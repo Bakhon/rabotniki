@@ -163,4 +163,69 @@ function get_photos_pick($session_id){
  </div>';
     }
 }
+
+
+function get_count_photo($user_id){
+    require 'conn.php';
+    $query = "SELECT * FROM `users_photo` WHERE USER_ID = $user_id";
+   // echo $query;
+    $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link)); 
+    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    $num_rows = mysqli_num_rows($result); 
+    return $num_rows;
+}
+
+function get_max_docs($session_id){
+
+    require 'conn.php';
+    $query = "SELECT max(ID) ID FROM `documents` where USER_ID = $session_id";
+   // echo $query;
+    $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link)); 
+    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);  
+
+     $num_rows = mysqli_num_rows($result); 
+     if($rows[0]['ID'] == NULL){
+         $src = '';
+     }else {
+   $maxid = $rows[0]['ID'];
+   
+   $query_sec = "SELECT DOC_NAME FROM `documents` where USER_ID = $session_id and ID = $maxid";
+
+   $result_sec = mysqli_query($link, $query_sec) or die("Ошибка " . mysqli_error($link)); 
+   $rows_sec = mysqli_fetch_all($result_sec, MYSQLI_ASSOC); 
+   $src = $rows_sec[0]['DOC_NAME']; 
+     }
+    return $src;    
+}
+
+
+function get_photos_docs($session_id){
+    require 'conn.php';
+    $query = "SELECT * FROM `documents` WHERE USER_ID = $session_id";
+    $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link)); 
+    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    foreach($rows as $row) {
+    echo '<div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+    <a id="photo_del" href="'.$row['DOC_NAME'].'">
+        <img class="img-thumbnail" src="'.$row['DOC_NAME'].'" alt="Фото-обои">
+    </a>        
+ </div>';
+    }
+}
+
+function get_photos_docs_master($session_id){
+    require 'conn.php';
+    $query = "SELECT * FROM `documents` WHERE USER_ID = $session_id";
+    $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link)); 
+    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+    foreach($rows as $row) {
+    echo '<div class="col-sm-6 col-md-4 col-lg-3 mb-4">
+    <a id="docs_del" href="'.$row['DOC_NAME'].'">
+        <img class="img-thumbnail" src="'.$row['DOC_NAME'].'" alt="Фото-обои">
+    </a> 
+    <a data-session="'.$row['USER_ID'].'" data-id="'.$row['ID'].'" id="delete_docs"><i class="fa fa-trash" aria-hidden="true"></i>Удалить<a/>      
+ </div>';
+    }
+}
+
 ?>

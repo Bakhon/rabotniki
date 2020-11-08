@@ -1,8 +1,8 @@
 <?php
 $host = 'localhost'; // адрес сервера 
-$database = 'emp'; // имя базы данных
+$database = 'database_08112020'; // имя базы данных
 $user = 'root'; // имя пользователя
-$password = ''; // пароль
+$password = 'root'; // пароль
 
 $link = mysqli_connect($host, $user, $password, $database) 
     or die("Ошибка " . mysqli_error($link));

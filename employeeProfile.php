@@ -179,7 +179,7 @@ require_once 'function.php';
                <!--      <a class="nav-link text-uppercase" href="#skill">Квалификация</a> -->
                     <a class="nav-link text-uppercase" href="#reviews">Отзывы</a>
                      <a class="nav-link text-uppercase" href="#photos">Фото</a> 
-              <!--       <a class="nav-link text-uppercase" href="#docs">Документы</a> -->
+                    <a class="nav-link text-uppercase" href="#docs">Документы</a> 
              <!--       <a class="nav-link text-uppercase" href="#price">Цены</a> -->
                     <a class="nav-link text-uppercase" href="#contacts">Контакты</a>        
                 </div>
@@ -759,13 +759,27 @@ if($num_rows <= 0) { ?>
                      <img class="card-img-top rounded-lg" src="<?php echo get_max_photos($_GET['uid']); ?>" alt="Фото-обои">  
                     </a> 
                         <div class="bg-black-50 py-2 px-3 text-white rounded-lg position-absolute fixed-bottom m-1" style="z-index: 1;">
-                            <span class="float-right"><svg class="mr-2 i is-images"><use xlink:href="#s-images" /></use></svg>4</span>       
+                            <span class="float-right"><svg class="mr-2 i is-images"><use xlink:href="#s-images" /></use></svg><?php echo get_count_photo($_GET['uid']); ?></span>       
                              <a class="text-white" href="pics.html">Фото-обои</a>    
                         </div>
                   </div>                 
             </div>      
         </div>
 
+    </div>
+</section>
+
+
+<!-- Docs -->
+<section id="docs" class="py-5">
+    <div class="container">
+        <h2 class="mb-4 text-center h-underline h-underline-secondary">Лицензии и документы</h2>
+        <div class="row justify-content-md-center photoswipe-gallery">
+                <div class="col-12 col-md-6 mb-4 text-center">
+                <a href="docs_all.php?id=<?php echo $_GET['uid']; ?>">
+                    <img class="img-thumbnail" src="<?php echo get_max_docs($_GET['uid']); ?>" alt="Специалист в области малярных работ"></a>    
+                </div>
+        </div>
     </div>
 </section>
 

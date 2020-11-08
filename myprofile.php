@@ -56,6 +56,64 @@ require_once 'function.php';
     }
 
 
+    if(isset($_POST['send_docs'])){
+
+        $user_id = $_POST['user_id'];
+            
+            if(isset($_FILES["user_docs"]["name"]))
+                {
+                    if($_FILES["user_docs"]["name"] != '')
+                    {
+                        $image_name = $_FILES["user_docs"]["name"];
+        
+                        $valid_extensions = array('jpg', 'jpeg', 'png');
+        
+                        $extension = pathinfo($image_name, PATHINFO_EXTENSION);
+        
+                        if(in_array($extension, $valid_extensions))
+                        {
+                            $upload_path = 'documents/' . time() . '.' . $extension;
+                            if(move_uploaded_file($_FILES["user_docs"]["tmp_name"], $upload_path))
+                            {
+                                $user_docs = $upload_path;
+                            }
+                        }
+                        else
+                        {
+                            $message .= '<div class="alert alert-danger">Only .jpg, .jpeg and .png Image allowed to upload</div>';
+                        }
+                    }
+                    else
+                    {
+                       // $user_avatar = $_POST["hidden_user_avatar"];
+                    }
+                }
+        
+                $query = "INSERT INTO `documents`(`DOC_NAME`, `USER_ID`) VALUES ('$user_docs', $user_id)";        
+                //echo $query;
+                 $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link)); 
+                 mysqli_close($link);
+                 header("location: myprofile.php");
+        
+        }
+
+        if(isset($_POST['send_price'])){
+           
+            $price = $_POST['price'];
+            $title = $_POST['title'];
+            $id_sp = $_POST['title_sp'];
+            $id_user = $_POST['user_id'];
+
+             
+            $query = "INSERT INTO `PRICE`(`ID_SERVICE`, `TITLE`, `PRICE`, `ID_USER`) VALUES ('$id_sp', '$title', '$price', '$id_user')";        
+            //echo $query;
+             $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link)); 
+             mysqli_close($link);
+             header("location: myprofile.php");
+            
+        }
+
+
 ?>
 <!DOCTYPE html>
 <html lang="ru">
@@ -232,7 +290,7 @@ require_once 'function.php';
                 <!--    <a class="nav-link text-uppercase" href="#skill">Квалификация</a> -->
               <!--      <a class="nav-link text-uppercase" href="#reviews">Отзывы</a> -->
                     <a class="nav-link text-uppercase" href="#photos">Фото</a>
-             <!--       <a class="nav-link text-uppercase" href="#docs">Документы</a>
+                   <a class="nav-link text-uppercase" href="#docs">Документы</a>
                     <a class="nav-link text-uppercase" href="#price">Цены</a> -->
                     <a class="nav-link text-uppercase" href="#contacts">Контакты</a>        
                 </div>
@@ -573,7 +631,7 @@ require_once 'function.php';
                      <img class="card-img-top rounded-lg" src="<?php echo get_max_photos($_SESSION['id']); ?>" alt="Фото-обои">  
                     </a> 
                         <div class="bg-black-50 py-2 px-3 text-white rounded-lg position-absolute fixed-bottom m-1" style="z-index: 1;">
-                            <span class="float-right"><svg class="mr-2 i is-images"><use xlink:href="#s-images" /></use></svg>4</span>       
+                            <span class="float-right"><svg class="mr-2 i is-images"><use xlink:href="#s-images" /></use></svg><?php echo get_count_photo($_SESSION['id']); ?></span>       
                              <a class="text-white" href="pics.html">Фото-обои</a>    
                         </div>
                   </div>                 
@@ -583,8 +641,168 @@ require_once 'function.php';
     </div>
 </section>
 
+<!-- Docs -->
+<section id="docs" class="py-5">
+    <div class="container">
+    <div style="    display: flex;
+    justify-content: center;
+    align-items: baseline;">
+       <div> <h2 class="mb-4 text-center h-underline h-underline-secondary">Лицензии и документы</h2> </div>
+        <div> <a data-toggle="modal"  data-target="#add_doc" style="margin-left: 120px;"> <i class="fa fa-plus" aria-hidden="true"></i> </a>  </div>
+       </div>
+        
+        <div class="row justify-content-md-center photoswipe-gallery">
+                <div class="col-12 col-md-6 mb-4 text-center">
+                <a href="docs.php?id=<?php echo $_SESSION['id']; ?>">
+                    <img class="img-thumbnail" src="<?php echo get_max_docs($_SESSION['id']); ?>" alt="Специалист в области малярных работ"></a>    
+                </div>
+        </div>
+    </div>
+</section>
 
 
+
+<!-- Price -->
+<section id="price" class="py-5">
+    <div class="container">
+    <div style="    display: flex;
+    justify-content: center;
+    align-items: center;">
+        <div>   <h2 class="">Расценки</h2> </div>
+        <div> <a data-toggle="modal"  data-target="#add_price" style="margin-left: 120px;"> <i class="fa fa-plus" aria-hidden="true"></i> </a>  </div>
+       </div>
+       
+            <div class="text-center text-muted mb-4">
+                Цены актуальны на 27.07.2020            
+            </div>
+
+
+            <div class="row">
+
+                <div class="col-lg-6">
+                    <div class="list-group shadow-sm mb-4">
+                        <div class="list-group-item py-2">
+                            <h5 class="m-0 text-center text-sm-left"><b>Электромонтажные работы</b></h5>
+                        </div>
+
+                        <div class="list-group-item py-1 pr-3">
+                            <div class="row">
+                                <div class="col pr-0">Штробление под проводку в бетоне, глубина штробы 2 см, м.пог.</div>
+                                <div class="col-auto text-right">
+                                    <b>700</b>
+                                    <span class="text-muted middle d-block d-sm-inline">тнг</span>
+                                </div>
+                           </div>
+                        </div>
+
+                        <div class="list-group-item py-1 pr-3">
+                            <div class="row">
+                                <div class="col pr-0">Штробление под проводку в кирпиче, глубина штробы 2 см, м.пог.</div>
+                                <div class="col-auto text-right">
+                                    <b>550</b>
+                                    <span class="text-muted middle d-block d-sm-inline">тнг</span>
+                                </div>
+                           </div>
+                        </div>
+
+
+
+                        <div class="list-group-item py-1 pr-3 text-center">
+                            <a class="middle text-secondary show-price-more" href="#">Показать еще цены</a>
+                        </div>
+
+
+                        <div class="hidden">
+
+                            <div class="list-group-item py-1 pr-3">
+                                        <div class="row">
+                                        <div class="col pr-0">Установка автоматов, 1 фаза, шт.</div>
+                                            <div class="col-auto text-right">
+                                                <b>800</b>
+                                                <span class="text-muted middle d-block d-sm-inline">тнг</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                    <div class="list-group-item py-1 pr-3">
+                                        <div class="row">
+                                        <div class="col pr-0">Установка силовых выключателей, УЗО, шт.</div>
+                                            <div class="col-auto text-right">
+                                                <b>1400</b>
+                                                <span class="text-muted middle d-block d-sm-inline">тнг</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                        </div>
+                    </div>
+
+                    <!--  Hidden -->
+                    <div class="collapse">
+                        
+                        <div class="list-group shadow-sm mb-4">
+
+
+                            <div class="list-group-item py-2"><h5 class="m-0 text-center text-sm-left"><b>Поклейка обоев</b></h5></div>
+
+                            <div class="list-group-item py-1 pr-3">
+                                <div class="row">
+                                    <div class="col pr-0">Поклейка бумажных обоев на стену, м²</div>
+                                    <div class="col-auto text-right">
+                                            <b>750</b>
+                                            <span class="text-muted middle d-block d-sm-inline">тнг</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="list-group-item py-1 pr-3">
+                                <div class="row">
+                                    <div class="col pr-0">оклейка бумажных обоев на потолок, м²</div>
+                                    <div class="col-auto text-right">
+                                            <b>1000</b>
+                                            <span class="text-muted middle d-block d-sm-inline">тнг</span>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <div class="list-group-item py-1 pr-3 text-center">
+                                <a class="middle text-secondary show-price-more" href="#">Показать еще цены</a>
+                            </div>
+
+
+                            <div class="hidden">
+
+                                <div class="list-group-item py-1 pr-3">
+                                        <div class="row">
+                                            <div class="col pr-0">Поклейка бамбуковых обоев на стены, м²</div>
+                                            <div class="col-auto text-right">
+                                                <b>1400</b>
+                                                <span class="text-muted middle d-block d-sm-inline">тнг</span>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+
+
+
+                        </div>
+                    </div> 
+
+                </div>
+               
+
+
+
+            </div>
+            
+            <div class="text-center mt-4">
+                <button type="button" class="btn btn-secondary" onclick="$(this).hide().parent().parent().find('.collapse').slideDown();">
+                    <svg class="mr-2 i ir-sync-alt"><use xlink:href="#r-sync-alt" /></use></svg>Показать еще цены</button>                
+            </div>
+
+    </div>
+
+</section>
 
 
 
@@ -733,6 +951,91 @@ require_once 'function.php';
         </div>
     </div>
 </div>
+
+<div class="modal modal-load fade show" id="add_doc" tabindex="-1" data-modal-action="/profile/modal-review?user=36221" style="display: none; padding-right: 17px;" aria-modal="true" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Добавьте фото документов и лицензии</h5>                                
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form method="POST" action="myprofile.php"  enctype="multipart/form-data" >
+            <div class="modal-body">
+            <div class="mb-3">
+           
+            <div class="form-group">            
+								<input type="file" name="user_docs">
+                                <br>
+                                <input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION['id']; ?>" />															
+			</div>           
+           </div>                              
+           </div>
+       
+            <div class="modal-footer"><input type="submit" name="send_docs" id="send_photo" class="btn btn-primary" value="Сохранить"/></div>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal modal-load fade show" id="add_price" tabindex="-1" data-modal-action="/profile/modal-review?user=36221" style="display: none; padding-right: 17px;" aria-modal="true" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Добавьте расценки</h5>                                
+                <button type="button" class="close" data-dismiss="modal">
+                    <span aria-hidden="true">×</span>
+                </button>
+            </div>
+            <form method="POST" action="myprofile.php" >
+            <div class="modal-body">
+            <div class="mb-3">
+          
+            <div class="form-group">            
+                                <input type="hidden" name="user_id" id="user_id" value="<?php echo $_SESSION['id']; ?>" />	
+                               													
+			</div>   
+            <div class="form-group field-signup-username required">
+                            <label for="signup-username">Выберите специализацию</label>
+                            <?php 
+                            $query_services = "SELECT * FROM `services` ";
+                            $result_services = mysqli_query($link, $query_services) or die("Ошибка " . mysqli_error($link)); 
+                            $rows_services = mysqli_fetch_all($result_services, MYSQLI_ASSOC);
+                            ?>
+                            <select name="title_sp" id="" class="select2-up form-control">    
+                            <?php foreach($rows_services as $item) { ?>                                                          
+                                <option value="<?php echo $item['ID']; ?>"><?php echo $item['NAME_SERV']; ?></option>        
+                            <?php } ?>                    
+                            </select>
+                            <div class="invalid-feedback"></div>
+            </div>  
+
+                        <div class="form-group field-signup-username required"> 
+                                <label for="signup-username">Название услуги</label>           
+                                <input class="form-control" type="text" name="title" id="title" value="" />	
+			            </div>  
+
+                            <div class="form-group field-signup-username required"> 
+                                <label for="signup-username">Цена услуги</label>           
+                                <input class="form-control" type="number" name="price" id="price" value="" />	
+			               </div>  
+            
+           </div>                              
+           </div>
+       
+            <div class="modal-footer">
+            <input type="submit" name="send_price" id="send_price" class="btn btn-primary" value="Сохранить" /> 
+        
+            </div>
+            </form>
+        </div>
+        </div>
+    </div>
+</div>
+
+
 
 
 
