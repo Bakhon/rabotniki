@@ -105,7 +105,7 @@ require_once 'function.php';
             $id_user = $_POST['user_id'];
 
              
-            $query = "INSERT INTO `PRICE`(`ID_SERVICE`, `TITLE`, `PRICE`, `ID_USER`) VALUES ('$id_sp', '$title', '$price', '$id_user')";        
+            $query = "INSERT INTO `PRICE`(`ID_SERVICE`, `TITLE`, `PRICE`, `ID_USER`,  `POST_DATE`) VALUES ('$id_sp', '$title', '$price', '$id_user', CURRENT_DATE())";        
             //echo $query;
              $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link)); 
              mysqli_close($link);
@@ -622,7 +622,14 @@ require_once 'function.php';
         <div>  <h2 class="">Фото работ</h2>  </div>
         <div> <a data-toggle="modal"  data-target="#add_photo_works" style="margin-left: 120px;"> <i class="fa fa-plus" aria-hidden="true"></i> </a>  </div>
        </div>
-
+       <?php $y =  count_photos($_SESSION['id']); if($y == 'NULL') {?>
+       <div class="row justify-content-center">
+    <div class="col-xl-6">
+                    <div id="w4" class="alert-info alert-i alert" role="alert">
+                    <svg class="alert-icon i id-info-circle" style="--i-primary-color: white;" ajax=""><svg class="i-color" style="--i-primary-color: white;" id="d-info-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs></defs><path fill="currentColor" d="M256 8C119 8 8 119.08 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 110a42 42 0 1 1-42 42 42 42 0 0 1 42-42zm56 254a12 12 0 0 1-12 12h-88a12 12 0 0 1-12-12v-24a12 12 0 0 1 12-12h12v-64h-12a12 12 0 0 1-12-12v-24a12 12 0 0 1 12-12h64a12 12 0 0 1 12 12v100h12a12 12 0 0 1 12 12z" class="i-secondary"></path><path fill="currentColor" d="M256 202a42 42 0 1 0-42-42 42 42 0 0 0 42 42zm44 134h-12V236a12 12 0 0 0-12-12h-64a12 12 0 0 0-12 12v24a12 12 0 0 0 12 12h12v64h-12a12 12 0 0 0-12 12v24a12 12 0 0 0 12 12h88a12 12 0 0 0 12-12v-24a12 12 0 0 0-12-12z" class="i-primary"></path></svg></svg>На данный момент фоток пока еще нет.
+       </div>            </div>
+    </div>
+       <?php } else { ?>
         <div class="row justify-content-md-center">           
                   
             <div class="col-sm-6 col-lg-4 col-xl-3 mb-4">
@@ -637,7 +644,7 @@ require_once 'function.php';
                   </div>                 
             </div>      
         </div>
-
+        <?php }  ?>
     </div>
 </section>
 
@@ -650,13 +657,21 @@ require_once 'function.php';
        <div> <h2 class="mb-4 text-center h-underline h-underline-secondary">Лицензии и документы</h2> </div>
         <div> <a data-toggle="modal"  data-target="#add_doc" style="margin-left: 120px;"> <i class="fa fa-plus" aria-hidden="true"></i> </a>  </div>
        </div>
-        
+       <?php $y =  count_docs($_SESSION['id']); if($y == 'NULL') {?>
+        <div class="row justify-content-center">
+    <div class="col-xl-10">
+                    <div id="w4" class="alert-info alert-i alert" role="alert">
+                    <svg class="alert-icon i id-info-circle" style="--i-primary-color: white;" ajax=""><svg class="i-color" style="--i-primary-color: white;" id="d-info-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs></defs><path fill="currentColor" d="M256 8C119 8 8 119.08 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 110a42 42 0 1 1-42 42 42 42 0 0 1 42-42zm56 254a12 12 0 0 1-12 12h-88a12 12 0 0 1-12-12v-24a12 12 0 0 1 12-12h12v-64h-12a12 12 0 0 1-12-12v-24a12 12 0 0 1 12-12h64a12 12 0 0 1 12 12v100h12a12 12 0 0 1 12 12z" class="i-secondary"></path><path fill="currentColor" d="M256 202a42 42 0 1 0-42-42 42 42 0 0 0 42 42zm44 134h-12V236a12 12 0 0 0-12-12h-64a12 12 0 0 0-12 12v24a12 12 0 0 0 12 12h12v64h-12a12 12 0 0 0-12 12v24a12 12 0 0 0 12 12h88a12 12 0 0 0 12-12v-24a12 12 0 0 0-12-12z" class="i-primary"></path></svg></svg>На данный момент документов пока еще нет.
+       </div>            </div>
+    </div>
+    <?php } else { ?>
         <div class="row justify-content-md-center photoswipe-gallery">
                 <div class="col-12 col-md-6 mb-4 text-center">
                 <a href="docs.php?id=<?php echo $_SESSION['id']; ?>">
                     <img class="img-thumbnail" src="<?php echo get_max_docs($_SESSION['id']); ?>" alt="Специалист в области малярных работ"></a>    
                 </div>
         </div>
+        <?php }  ?>
     </div>
 </section>
 
@@ -673,67 +688,31 @@ require_once 'function.php';
        </div>
        
             <div class="text-center text-muted mb-4">
-                Цены актуальны на 27.07.2020            
+                Цены актуальны на <?php echo last_date_price($_SESSION['id']); ?>         
             </div>
 
-
+            <?php $y =  count_price($_SESSION['id']); if($y == 'NULL') {?>
+        <div class="row justify-content-center">
+    <div class="col-xl-10">
+                    <div id="w4" class="alert-info alert-i alert" role="alert">
+                    <svg class="alert-icon i id-info-circle" style="--i-primary-color: white;" ajax=""><svg class="i-color" style="--i-primary-color: white;" id="d-info-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs></defs><path fill="currentColor" d="M256 8C119 8 8 119.08 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 110a42 42 0 1 1-42 42 42 42 0 0 1 42-42zm56 254a12 12 0 0 1-12 12h-88a12 12 0 0 1-12-12v-24a12 12 0 0 1 12-12h12v-64h-12a12 12 0 0 1-12-12v-24a12 12 0 0 1 12-12h64a12 12 0 0 1 12 12v100h12a12 12 0 0 1 12 12z" class="i-secondary"></path><path fill="currentColor" d="M256 202a42 42 0 1 0-42-42 42 42 0 0 0 42 42zm44 134h-12V236a12 12 0 0 0-12-12h-64a12 12 0 0 0-12 12v24a12 12 0 0 0 12 12h12v64h-12a12 12 0 0 0-12 12v24a12 12 0 0 0 12 12h88a12 12 0 0 0 12-12v-24a12 12 0 0 0-12-12z" class="i-primary"></path></svg></svg>На данный момент рассценок пока еще нет.
+       </div>            </div>
+    </div>
+    <?php } else { ?>
             <div class="row">
-
+               
+               <div class="col-lg-3">
+               </div>
                 <div class="col-lg-6">
                     <div class="list-group shadow-sm mb-4">
-                        <div class="list-group-item py-2">
-                            <h5 class="m-0 text-center text-sm-left"><b>Электромонтажные работы</b></h5>
-                        </div>
-
-                        <div class="list-group-item py-1 pr-3">
-                            <div class="row">
-                                <div class="col pr-0">Штробление под проводку в бетоне, глубина штробы 2 см, м.пог.</div>
-                                <div class="col-auto text-right">
-                                    <b>700</b>
-                                    <span class="text-muted middle d-block d-sm-inline">тнг</span>
-                                </div>
-                           </div>
-                        </div>
-
-                        <div class="list-group-item py-1 pr-3">
-                            <div class="row">
-                                <div class="col pr-0">Штробление под проводку в кирпиче, глубина штробы 2 см, м.пог.</div>
-                                <div class="col-auto text-right">
-                                    <b>550</b>
-                                    <span class="text-muted middle d-block d-sm-inline">тнг</span>
-                                </div>
-                           </div>
-                        </div>
-
-
-
+                
+                      <?php echo get_price_ser($_SESSION['id']); ?>                        
                         <div class="list-group-item py-1 pr-3 text-center">
                             <a class="middle text-secondary show-price-more" href="#">Показать еще цены</a>
                         </div>
 
 
-                        <div class="hidden">
-
-                            <div class="list-group-item py-1 pr-3">
-                                        <div class="row">
-                                        <div class="col pr-0">Установка автоматов, 1 фаза, шт.</div>
-                                            <div class="col-auto text-right">
-                                                <b>800</b>
-                                                <span class="text-muted middle d-block d-sm-inline">тнг</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                                
-                                    <div class="list-group-item py-1 pr-3">
-                                        <div class="row">
-                                        <div class="col pr-0">Установка силовых выключателей, УЗО, шт.</div>
-                                            <div class="col-auto text-right">
-                                                <b>1400</b>
-                                                <span class="text-muted middle d-block d-sm-inline">тнг</span>
-                                            </div>
-                                        </div>
-                                    </div>
-                        </div>
+                        
                     </div>
 
                     <!--  Hidden -->
@@ -789,7 +768,8 @@ require_once 'function.php';
                     </div> 
 
                 </div>
-               
+                <div class="col-lg-3">
+               </div>
 
 
 
@@ -799,7 +779,7 @@ require_once 'function.php';
                 <button type="button" class="btn btn-secondary" onclick="$(this).hide().parent().parent().find('.collapse').slideDown();">
                     <svg class="mr-2 i ir-sync-alt"><use xlink:href="#r-sync-alt" /></use></svg>Показать еще цены</button>                
             </div>
-
+    <?php } ?>
     </div>
 
 </section>
@@ -1058,6 +1038,7 @@ require_once 'function.php';
 <script src="Theme/js/photoswipe.min.js"></script>
 <script src="Theme/js/photoswipe-ui-default.min.js"></script>
 <script src="Theme/js/script.js"></script>
+<script src="Theme/js/photo.js"></script>
 
 <script src="https://use.fontawesome.com/029b8e5d68.js"></script>
 

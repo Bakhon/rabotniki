@@ -750,7 +750,14 @@ if($num_rows <= 0) { ?>
         <div>  <h2 class="">Фото работ</h2>  </div>
         
        </div>
-
+       <?php $y =  count_photos($_GET['uid']); if($y == 'NULL') {?>
+       <div class="row justify-content-center">
+    <div class="col-xl-6">
+                    <div id="w4" class="alert-info alert-i alert" role="alert">
+                    <svg class="alert-icon i id-info-circle" style="--i-primary-color: white;" ajax=""><svg class="i-color" style="--i-primary-color: white;" id="d-info-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs></defs><path fill="currentColor" d="M256 8C119 8 8 119.08 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 110a42 42 0 1 1-42 42 42 42 0 0 1 42-42zm56 254a12 12 0 0 1-12 12h-88a12 12 0 0 1-12-12v-24a12 12 0 0 1 12-12h12v-64h-12a12 12 0 0 1-12-12v-24a12 12 0 0 1 12-12h64a12 12 0 0 1 12 12v100h12a12 12 0 0 1 12 12z" class="i-secondary"></path><path fill="currentColor" d="M256 202a42 42 0 1 0-42-42 42 42 0 0 0 42 42zm44 134h-12V236a12 12 0 0 0-12-12h-64a12 12 0 0 0-12 12v24a12 12 0 0 0 12 12h12v64h-12a12 12 0 0 0-12 12v24a12 12 0 0 0 12 12h88a12 12 0 0 0 12-12v-24a12 12 0 0 0-12-12z" class="i-primary"></path></svg></svg>На данный момент фоток пока еще нет.
+       </div>            </div>
+    </div>
+       <?php } else { ?>
         <div class="row justify-content-md-center">           
                   
             <div class="col-sm-6 col-lg-4 col-xl-3 mb-4">
@@ -765,7 +772,7 @@ if($num_rows <= 0) { ?>
                   </div>                 
             </div>      
         </div>
-
+       <?php } ?>
     </div>
 </section>
 
@@ -774,12 +781,22 @@ if($num_rows <= 0) { ?>
 <section id="docs" class="py-5">
     <div class="container">
         <h2 class="mb-4 text-center h-underline h-underline-secondary">Лицензии и документы</h2>
+
+        <?php $y =  count_docs($_GET['uid']); if($y == 'NULL') {?>
+        <div class="row justify-content-center">
+    <div class="col-xl-10">
+                    <div id="w4" class="alert-info alert-i alert" role="alert">
+                    <svg class="alert-icon i id-info-circle" style="--i-primary-color: white;" ajax=""><svg class="i-color" style="--i-primary-color: white;" id="d-info-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs></defs><path fill="currentColor" d="M256 8C119 8 8 119.08 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 110a42 42 0 1 1-42 42 42 42 0 0 1 42-42zm56 254a12 12 0 0 1-12 12h-88a12 12 0 0 1-12-12v-24a12 12 0 0 1 12-12h12v-64h-12a12 12 0 0 1-12-12v-24a12 12 0 0 1 12-12h64a12 12 0 0 1 12 12v100h12a12 12 0 0 1 12 12z" class="i-secondary"></path><path fill="currentColor" d="M256 202a42 42 0 1 0-42-42 42 42 0 0 0 42 42zm44 134h-12V236a12 12 0 0 0-12-12h-64a12 12 0 0 0-12 12v24a12 12 0 0 0 12 12h12v64h-12a12 12 0 0 0-12 12v24a12 12 0 0 0 12 12h88a12 12 0 0 0 12-12v-24a12 12 0 0 0-12-12z" class="i-primary"></path></svg></svg>На данный момент документов пока еще нет.
+       </div>            </div>
+    </div>
+    <?php } else { ?>
         <div class="row justify-content-md-center photoswipe-gallery">
                 <div class="col-12 col-md-6 mb-4 text-center">
                 <a href="docs_all.php?id=<?php echo $_GET['uid']; ?>">
                     <img class="img-thumbnail" src="<?php echo get_max_docs($_GET['uid']); ?>" alt="Специалист в области малярных работ"></a>    
                 </div>
         </div>
+    <?php } ?>
     </div>
 </section>
 
