@@ -1,178 +1,8 @@
-<!DOCTYPE html>
-<html>
 
-<head>
-
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
-<title>Каталог мастеров и строительных компаний</title>
-
-<meta property="og:title" content="Каталог мастеров и строительных компаний">
-<meta property="og:description" content="Мастера и строители для качественного и недорого ремонта квартиры под ключ. Выбирайте лучших в нашем каталоге мастеров.">
-<meta property="og:image" content="Theme/images/og-image.jpg">
-<meta property="og:image:width" content="188">
-<meta property="og:image:height" content="90">
-<meta property="og:url" content="http://www.rabotniki.kz/catalog">
-<meta property="og:type" content="website">
-<meta property="og:site_name" content="SiteName.kz">
-
-<link rel="apple-touch-icon" sizes="180x180" href="Theme/favicon/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="Theme/favicon/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="Theme/favicon/favicon-16x16.png">
-<link rel="manifest" href="Theme/favicon/site.webmanifest">
-<link rel="mask-icon" href="Theme/favicon/safari-pinned-tab.svg" color="#5bbad5">
-<meta name="msapplication-TileColor" content="#da532c">
-<meta name="theme-color" content="#ffffff">
-
-
-<link href=Theme/images/192.png">
-
-<link href="Theme/css/select2.min.css" rel="stylesheet">
-<link href="Theme/css/select2-addl.min.css" rel="stylesheet">
-<link href="Theme/css/select2-krajee-bs4.min.css" rel="stylesheet">
-<link href="Theme/css/kv-widgets.min.css" rel="stylesheet">
-<link href="Theme/css/fileinput.min.css" rel="stylesheet">
-<link href="Theme/css/bootstrap-datepicker4.min.css" rel="stylesheet">
-<link href="Theme/css/datepicker-kv.min.css" rel="stylesheet">
-<link rel="stylesheet" href="Theme/css/site.css">
-<script type="text/javascript" async="" src="Theme/js/analytics.js"></script>
-<script src="https://cdn.ckeditor.com/4.14.1/standard/ckeditor.js"></script>
-<script type="text/javascript" src="http://code.jquery.com/ui/1.11.4/jquery-ui.min.js"></script>
-<link href='//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css' rel='stylesheet' type='text/css'>
-
-</head>
-
-
-
-<body id="body">
-
-<div id="load" class="lds-ring d-lg-none" style="display: none;">
-    <div></div>
-    <div></div>
-    <div></div>
-    <div></div>
-</div>
-
-<!-- HEADER -->
-<header>
-    <div class="container">
-        <div class="row align-items-center d-none d-lg-flex">
-
-            <!-- logo -->
-            <div class="col-auto py-2 pr-0">
-                <a href="first.html"><img src="Theme/images/rabotniki.png" height="60" alt="SiteName.KZ"></a>            
-            </div>
-          
-                <div class="col-1 text-center p-0"> </div>
-
-            <!-- Search -->
-            <div class="col">
-                <form action="#tender" method="post">                
-                    <div class="input-group">
-                        <input id="need" name="need" type="text" class="form-control" placeholder="Что нужно сделать?">
-                        <div class="input-group-append">
-                            <button class="btn btn-secondary" type="submit">Найти мастера</button>
-                        </div>
-                    </div>
-                </form>                
-                
-                <small class="text-muted">
-                    Например: <a href="#" onclick="$('#need').val($(this).text()).focus(); return false;">Сделать ремонт в 1-к квартире</a>
-                </small>
-            </div>
-
-            <!-- Registration/LogIn -->
-            <div class="col-auto">
-                    <ul class="my-2 flex-column nav" style="width: 280px; margin-left: 1.2rem;">
-                        <li class="nav-item text-center">
-                            <a class="nav-link" href="register.html">
-                                <svg class="mr-2 i is-user-plus"><use xlink:href="#s-user-plus"></use></svg>Зарегистрироваться</a>
-                        </li>
-                        <li class="nav-item text-center">
-                            <a class="nav-link" href="login.html">
-                                <svg class="mr-2 i is-sign-in-alt"><use xlink:href="#s-sign-in-alt"></use></svg>Войти</a>
-                            </li>
-                    </ul>                           
-            </div>
-
-        </div>
-    </div>
-</header>
-    
-<!--  MENU -->
-<nav id="menu" class="navbar-main navbar-expand-lg navbar">
-    <div class="container">
-        <a class="navbar-brand" href="first.html">SiteName.KZ</a>
-        <button type="button" class="navbar-toggler" data-toggle="offcanvas" aria-label="Toggle navigation">
-            <svg class="i ir-bars"><use xlink:href="#r-bars"></use></svg>
-        </button>
-        
-        <div class="navbar-content">
-            <a class="btn btn-lg text-white px-3" href="login.html">
-                <svg class="i is-sign-in-alt"><use xlink:href="#s-sign-in-alt"></use></svg>
-            </a>
-        </div>
-
-        <div id="menu-collapse" class="offcanvas-collapse  navbar-collapse">
-            <div class="d-lg-none">
-                <div class="header-menu px-3 pt-3 pb-2 mb-2">
-                    <div class="mt-1 mb-2">
-                        <a class="h3 font-weight-bold" href="first.html">SiteName.KZ</a>
-                    </div>
-                    <a href="register.html">Регистрация</a> | 
-                    <a href="login.html">Войти</a>
-                </div>
-                
-                <ul class="nav">
-                    <li class="nav-item">
-                    <a class="text-secondary nav-link" href="tenderAdd.html">
-                        <svg class="mr-3 mr-lg-2 i il-plus"><use xlink:href="#l-plus"></use></svg>Создать тендер</a>
-                    </li>
-                </ul>
-            </div>
-            
-            <ul class="nav">
-                <li class="nav-item">
-                    <a class="nav-link " href="catalog.html">
-                        <svg class="mr-3 mr-lg-2 i is-user-hard-hat"><use xlink:href="#s-user-hard-hat"></use></svg>
-                        Работники
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="tender.html">
-                        <svg class="mr-3 mr-lg-2 i is-gavel"><use xlink:href="#s-gavel"></use></svg>
-                        Тендеры
-                    </a>
-                </li>                   
-                
-            </ul>
-            
-            <hr class="my-2">
-
-                <!-- <div class="d-lg-none middle">
-                    <ul class="nav">
-                        <li class="nav-item">
-                            <a class="nav-link py-1 text-muted" href="https://#/faq">
-                                Служба поддержки
-                            </a>
-                        </li>
-                    </ul>
-                </div> -->
-                
-                <hr class="my-2">
-                
-                <div class="d-lg-none text-center pt-3 pb-4">
-                    <a href="#">
-                        <img src="Theme/images/rabotniki.png" alt="" style="height: 50px;">
-                    </a>
-                </div>
-
-        </div>
-    </div>
-</nav>
-
+<?php require_once 'Theme/blocks/header_tender.php'; 
+      require_once 'function_tender.php';
+      print_r($_SESSION);
+?>
 
 
 
@@ -195,7 +25,7 @@
     <div class="col">
 
                 
-        <form id="tender" action="/tender/create" method="post" enctype="multipart/form-data">
+        <form id="tender" action="" method="post" enctype="multipart/form-data">
             <!-- Info -->
             <div class="card border-2 border-primary mb-4">
                 <div class="card-body pl-0 pl-sm-2">
@@ -208,7 +38,7 @@
             </div>
 
             <div class="title bg-light text-dark h5 mb-4">Описание заказа</div>
-
+  <input type="hidden" id="hidden_id_tender" value = <?php echo mt_rand(1, 999999); ?> />
 
             <!-- Объект находится -->
             <div class="form-group row required">
@@ -221,16 +51,16 @@
                              <!--  ddl   -->
 
                              
-                             <select id="tender-expired" class="select2-up form-control" >
+                             <select id="tender-city" class="select2-up form-control" >
+                                <?php echo get_cities(); ?>
                                 
-                                <option value="1" selected>Нур-Султан</option>
                                 
                             </select>
 
                             <div class="invalid-feedback ">Необходимо заполнить поле</div>  
                         </div>
                         <div class="col-sm">
-                            <input type="text" id="tender-address" class="form-control mt-2 mt-sm-0" name="Tender[address]" placeholder="Введите район или адрес">            
+                            <input type="text" required="" id="tender-address" class="form-control mt-2 mt-sm-0" name="Tender[address]" placeholder="Введите район или адрес">            
                         </div>
                     </div>
                 </div>
@@ -244,23 +74,7 @@
                 </div>
                 <div class="col-sm-9">
                     <div>
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="contactChoice1" name="contact" value="1">
-                            <label  for="contactChoice1">Строители или мастер на мой заказ</label>
-                        </div>
-
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="contactChoice2" name="contact" value="2">
-                            <label  for="contactChoice2">Специалист в компанию или бригаду на постоянную работу</label>
-                           
-                        </div>
-
-                        <div class="custom-control custom-radio">
-                            <input type="radio" id="contactChoice3" name="contact" value="3">
-                            <label  for="contactChoice2">Строительные материалы</label>
-                        </div>
-
-
+                 <?php echo dic_need(); ?>
                        
                     </div>    
                 </div>
@@ -282,7 +96,7 @@
                 <label class="col-sm-3" for="tender-text">Подробное описание</label>
                 <div class="col-sm-9">
                    <!--  <textarea id="tender-text" class="form-control" name="Tender[text]" placeholder="Максимально подробно опишите перечень работ (площадь, объем, сроки)" aria-required="true"></textarea> -->
-                    <textarea name="editor1" laceholder="Максимально подробно опишите перечень работ (площадь, объем, сроки)"></textarea>
+                    <textarea id="editor1" name="editor1" laceholder="Максимально подробно опишите перечень работ (площадь, объем, сроки)"></textarea>
                     <script>
                             CKEDITOR.replace( 'editor1' );
                     </script>
@@ -319,27 +133,10 @@
                             
                             
                             <div class=" border rounded mb-2 shadow-sm bg-light-grey">
-                            <div class="p-0"><button type="button" class="btn btn-lg text-body btn-block shadow-none py-2 text-left collapsed" data-toggle="collapse" data-target="#first14"><span class="list-icon"><svg class="i is-caret-right"><use xlink:href="#s-caret-right" /></use></svg><svg class="i is-caret-down"><use xlink:href="#s-caret-down" /></use></svg>Отделочные работы</span></button></div>
-                                <div id="first14" class="collapse px-3">
-                                    <div class="px-3 pt-2 mb-3 bg-white rounded-lg">
-                                        <div class="custom-control custom-checkbox pb-2"><input type="checkbox" id="c27" class="custom-control-input" name="Tender[category_ids][]" value="27"> <label class="custom-control-label" for="c27">Плиточные работы</label></div>
-                                        <div class="custom-control custom-checkbox pb-2"><input type="checkbox" id="c15" class="custom-control-input" name="Tender[category_ids][]" value="15"> <label class="custom-control-label" for="c15">Малярные работы</label></div>
-                                        <div class="custom-control custom-checkbox pb-2"><input type="checkbox" id="c20" class="custom-control-input" name="Tender[category_ids][]" value="20"> <label class="custom-control-label" for="c20">Штукатурные работы</label></div>                        
-                                    </div>
-                                </div>        
+                            <?php echo dic_category(); ?>       
                             </div>
 
-                            <!-- DELETE this -->
-                            <div class=" border rounded mb-2 shadow-sm bg-light-grey">
-                            <div class="p-0"><button type="button" class="btn btn-lg text-body btn-block shadow-none py-2 text-left collapsed" data-toggle="collapse" data-target="#first188"><span class="list-icon"><svg class="i is-caret-right"><use xlink:href="#s-caret-right" /></use></svg><svg class="i is-caret-down"><use xlink:href="#s-caret-down" /></use></svg>Инженерные системы и коммуникации</span></button></div>
-                                <div id="first188" class="collapse px-3">
-                                    <div class="px-3 pt-2 mb-3 bg-white rounded-lg">
-                                        <div class="custom-control custom-checkbox pb-2"><input type="checkbox" id="c189" class="custom-control-input" name="Tender[category_ids][]" value="189"> <label class="custom-control-label" for="c189">Электромонтажные работы</label></div>
-                                        <div class="custom-control custom-checkbox pb-2"><input type="checkbox" id="c198" class="custom-control-input" name="Tender[category_ids][]" value="198"> <label class="custom-control-label" for="c198">Водоснабжение и очистка воды</label></div>
-                                        <div class="custom-control custom-checkbox pb-2"><input type="checkbox" id="c210" class="custom-control-input" name="Tender[category_ids][]" value="210"> <label class="custom-control-label" for="c210">Альтернативные источники энергии</label></div>
-                                    </div>
-                                </div>       
-                            </div>
+                         
                             <!-- DELETE this end-->
 
                         </div>       
@@ -355,22 +152,22 @@
                     <input type="hidden" name="Tender[customer]" value="">
                     <div id="tender-customer" role="radiogroup" aria-required="true">
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="i0" class="custom-control-input" name="Tender[customer]" value="1">
+                            <input type="radio" id="i0" class="custom-control-input" name="optradio" value="1">
                             <label class="custom-control-label" for="i0">Владелец (или его представитель)</label>
                         </div>
 
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="i1" class="custom-control-input" name="Tender[customer]" value="2">
+                            <input type="radio" id="i1" class="custom-control-input" name="optradio" value="2">
                             <label class="custom-control-label" for="i1">Подрядчик (ищу на субподряд)</label>
                         </div>
 
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="i2" class="custom-control-input" name="Tender[customer]" value="3">
+                            <input type="radio" id="i2" class="custom-control-input" name="optradio" value="3">
                             <label class="custom-control-label" for="i2">Посредник (без процента)</label>
                         </div>
 
                         <div class="custom-control custom-radio">
-                            <input type="radio" id="i3" class="custom-control-input" name="Tender[customer]" value="4">
+                            <input type="radio" id="i3" class="custom-control-input" name="optradio" value="4">
                             <label class="custom-control-label" for="i3">Посредник (с процентом)</label>
                             <div class="invalid-feedback "></div>
                         </div>
@@ -474,7 +271,7 @@
             <div class="form-group row mt-n2 mb-4 field-tender-showphone">
                 <div class="col-sm-9 offset-sm-3">
                     <div class="custom-control custom-checkbox">
-                        <input type="hidden" name="Tender[showPhone]" value="0"><input type="checkbox" id="tender-showphone" class="custom-control-input" name="Tender[showPhone]" value="1" checked>
+                        <input type="hidden" name="Tender[showPhone]" value="0"><input type="checkbox" id="tender-showphone" class="custom-control-input" name="tender-showphone" value="1" >
                         <label class="custom-control-label" for="tender-showphone">Показать этот телефон на странице тендера для связи со мной</label>
                         <div class="invalid-feedback "></div>
                     </div>
@@ -498,7 +295,7 @@
             <div class="row">
                 <div class="col-sm-9 offset-sm-3">
                     <input type="hidden" id="signup-captcha" name="Signup[captcha]">                
-                    <button type="submit" id="btn-submit" class="btn btn-lg btn-primary">Сохранить</button>            
+                    <input type="button" id="btn_tender" class="btn btn-lg btn-primary" value="Сохранить"/>            
                 </div>
             </div>
 
@@ -629,7 +426,7 @@
     });
 </script>
 
-
+<script src="Theme/js/tender.js"></script>
 
 
 

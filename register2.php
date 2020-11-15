@@ -202,8 +202,7 @@
                <?php  require_once 'conn.php';
                $query ="SELECT * FROM `speciality`"; 
                $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link)); 
-              // $num_rows = mysqli_num_rows($result);
-              // $row = mysqli_fetch_row($result);
+
                $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
              //  print_r($rows);
                              
