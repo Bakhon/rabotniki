@@ -1,30 +1,23 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.3
+-- version 4.9.0.1
 -- https://www.phpmyadmin.net/
 --
--- Хост: 127.0.0.1
--- Время создания: Ноя 13 2020 г., 06:12
--- Версия сервера: 10.4.14-MariaDB
--- Версия PHP: 7.4.11
+-- Host: localhost:8889
+-- Generation Time: Nov 15, 2020 at 04:27 PM
+-- Server version: 5.7.26
+-- PHP Version: 7.3.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
 SET time_zone = "+00:00";
 
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
 --
--- База данных: `09112020`
+-- Database: `tender`
 --
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `chat`
+-- Table structure for table `chat`
 --
 
 CREATE TABLE `chat` (
@@ -33,12 +26,12 @@ CREATE TABLE `chat` (
   `TO_USER` int(11) NOT NULL,
   `MSG` mediumtext NOT NULL,
   `FILE` varchar(255) NOT NULL,
-  `POST_DATE` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp(),
+  `POST_DATE` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   `POST_TIME` varchar(200) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `chat`
+-- Dumping data for table `chat`
 --
 
 INSERT INTO `chat` (`ID`, `FROM_USER`, `TO_USER`, `MSG`, `FILE`, `POST_DATE`, `POST_TIME`) VALUES
@@ -60,7 +53,7 @@ INSERT INTO `chat` (`ID`, `FROM_USER`, `TO_USER`, `MSG`, `FILE`, `POST_DATE`, `P
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `dic_country`
+-- Table structure for table `dic_country`
 --
 
 CREATE TABLE `dic_country` (
@@ -69,7 +62,7 @@ CREATE TABLE `dic_country` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `dic_country`
+-- Dumping data for table `dic_country`
 --
 
 INSERT INTO `dic_country` (`ID`, `NAME`) VALUES
@@ -79,7 +72,27 @@ INSERT INTO `dic_country` (`ID`, `NAME`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `documents`
+-- Table structure for table `dic_need`
+--
+
+CREATE TABLE `dic_need` (
+  `ID` int(11) NOT NULL,
+  `NEED_NAME` varchar(4000) NOT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `dic_need`
+--
+
+INSERT INTO `dic_need` (`ID`, `NEED_NAME`) VALUES
+(1, 'Строители или мастер на мой заказ'),
+(2, 'Специалист в компанию или бригаду на постоянную работу'),
+(3, 'Строительные материалы');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `documents`
 --
 
 CREATE TABLE `documents` (
@@ -91,7 +104,7 @@ CREATE TABLE `documents` (
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `price`
+-- Table structure for table `price`
 --
 
 CREATE TABLE `price` (
@@ -104,16 +117,18 @@ CREATE TABLE `price` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `price`
+-- Dumping data for table `price`
 --
 
 INSERT INTO `price` (`ID`, `ID_SERVICE`, `TITLE`, `PRICE`, `ID_USER`, `POST_DATE`) VALUES
-(28, 9, 'Лыжи', 1234, 27, '2020-11-09');
+(28, 9, 'Лыжи', 1234, 27, '2020-11-09'),
+(43, 7, 'ремонт', 5000, 27, '2020-11-15'),
+(44, 7, 'Чистка ковров', 4000, 27, '2020-11-15');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `review`
+-- Table structure for table `review`
 --
 
 CREATE TABLE `review` (
@@ -128,7 +143,7 @@ CREATE TABLE `review` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `review`
+-- Dumping data for table `review`
 --
 
 INSERT INTO `review` (`ID`, `REV_TENDER`, `LIKE_REV`, `NOTLIKE_REV`, `ALL_CONCL`, `ID_FROM`, `ID_TO`, `DATE_COMMENT`) VALUES
@@ -154,7 +169,7 @@ INSERT INTO `review` (`ID`, `REV_TENDER`, `LIKE_REV`, `NOTLIKE_REV`, `ALL_CONCL`
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `services`
+-- Table structure for table `services`
 --
 
 CREATE TABLE `services` (
@@ -164,7 +179,7 @@ CREATE TABLE `services` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `services`
+-- Dumping data for table `services`
 --
 
 INSERT INTO `services` (`ID`, `NAME_SERV`, `SPECID`) VALUES
@@ -178,7 +193,7 @@ INSERT INTO `services` (`ID`, `NAME_SERV`, `SPECID`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `speciality`
+-- Table structure for table `speciality`
 --
 
 CREATE TABLE `speciality` (
@@ -187,7 +202,7 @@ CREATE TABLE `speciality` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `speciality`
+-- Dumping data for table `speciality`
 --
 
 INSERT INTO `speciality` (`ID`, `NAME_SPEC`) VALUES
@@ -197,29 +212,73 @@ INSERT INTO `speciality` (`ID`, `NAME_SPEC`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `tender`
+-- Table structure for table `tender`
 --
 
 CREATE TABLE `tender` (
   `ID` int(11) NOT NULL,
   `ADDRES` varchar(4000) NOT NULL,
+  `WE_NEED` int(11) NOT NULL,
   `TITLE` varchar(4000) NOT NULL,
   `DESCRIPTION` mediumtext NOT NULL,
   `PATH_FILE` varchar(1000) NOT NULL,
-  `CATEGORY` int(11) NOT NULL,
+  `CATEGORY` int(11) DEFAULT NULL,
   `WHOIS` int(11) NOT NULL,
   `PRICE` int(11) NOT NULL,
   `DATE_BEGIN` date NOT NULL,
   `DATE_END` date NOT NULL,
   `CONTACT_NAME` varchar(2000) NOT NULL,
   `PHONE` varchar(4000) NOT NULL,
-  `SHOW_PHONE` int(11) NOT NULL
+  `SHOW_PHONE` int(11) NOT NULL,
+  `POST_DATE` date DEFAULT NULL,
+  `STATUS` int(11) NOT NULL,
+  `ID_USER` int(11) NOT NULL,
+  `ID_TENDER` int(11) NOT NULL,
+  `SEEN` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `tender`
+--
+
+INSERT INTO `tender` (`ID`, `ADDRES`, `WE_NEED`, `TITLE`, `DESCRIPTION`, `PATH_FILE`, `CATEGORY`, `WHOIS`, `PRICE`, `DATE_BEGIN`, `DATE_END`, `CONTACT_NAME`, `PHONE`, `SHOW_PHONE`, `POST_DATE`, `STATUS`, `ID_USER`, `ID_TENDER`, `SEEN`) VALUES
+(117, 'Иманова', 2, 'Заголовок', 'тест\r\n', '', 7, 3, 555, '2020-11-10', '2020-11-19', '123', '+7(333) 333-3333', 1, '2020-11-14', 1, 27, 864653, 0),
+(118, 'Иманова', 2, 'Заголовок', 'тест\r\n', '', 4, 3, 555, '2020-11-10', '2020-11-19', '123', '+7(333) 333-3333', 1, '2020-11-14', 1, 27, 864653, 0),
+(119, 'Новый район', 3, 'Укладка 100 кв.м. тротуарной плитки на бетонное основание', 'Подробное описание тендера\r\n', 'tender/Техническое задание проекта job.docx', 6, 2, 80000, '2020-11-20', '2020-11-27', 'Bahon', '+7(700) 400-0556', 1, '2020-11-14', 1, 27, 807985, 0),
+(120, 'Новый район', 3, 'Укладка 100 кв.м. тротуарной плитки на бетонное основание', 'Подробное описание тендера\r\n', 'tender/Техническое задание проекта job.docx', 5, 2, 80000, '2020-11-20', '2020-11-27', 'Bahon', '+7(700) 400-0556', 1, '2020-11-14', 1, 27, 807985, 0),
+(121, 'Новый район', 3, 'Укладка 100 кв.м. тротуарной плитки на бетонное основание', 'Подробное описание тендера\r\n', 'tender/Техническое задание проекта job.docx', 8, 2, 80000, '2020-11-20', '2020-11-27', 'Bahon', '+7(700) 400-0556', 1, '2020-11-14', 1, 27, 807985, 0);
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `users`
+-- Table structure for table `TENDER_COMMENT`
+--
+
+CREATE TABLE `TENDER_COMMENT` (
+  `ID` int(11) NOT NULL,
+  `COMMENT` text NOT NULL,
+  `ID_USER` int(11) NOT NULL,
+  `ID_TENDER` int(11) NOT NULL,
+  `POST_DATE` datetime DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `TENDER_COMMENT`
+--
+
+INSERT INTO `TENDER_COMMENT` (`ID`, `COMMENT`, `ID_USER`, `ID_TENDER`, `POST_DATE`) VALUES
+(1, 'test', 27, 807985, NULL),
+(2, 'Готов к работе', 27, 807985, '2020-11-15 09:00:12'),
+(3, 'Готов приступить к работе', 27, 807985, '2020-11-15 09:02:48'),
+(4, 'gotov', 27, 807985, '2020-11-15 09:03:28'),
+(5, 'test', 27, 864653, '2020-11-15 09:15:50'),
+(6, 'Новая ', 27, 864653, '2020-11-15 09:49:35'),
+(7, 'Готов выполнить данный заказ', 27, 864653, '2020-11-15 10:48:12');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
 --
 
 CREATE TABLE `users` (
@@ -237,20 +296,20 @@ CREATE TABLE `users` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `users`
+-- Dumping data for table `users`
 --
 
 INSERT INTO `users` (`ID`, `NAME`, `LASTNAME`, `PHONE`, `TYPE`, `PASSWORD`, `STATUS`, `LOCATION`, `ABOUT`, `AVATAR`, `POST_DATE`) VALUES
 (29, 'Макпал', '', '+7(778) 142-0449', 1, '4549e2ac35e84f7c8b6d73b71bc4a5e3', 1, 1, '1.1. Агент и Принципал согласны официально подтвердить свое сотрудничество подписанием данного договора.  В течение  срока действия Договора, Агент вправе  продвигать    продукцию   клиентам Принципала – программное обеспечение для стоматологических клиник Dent Time  – (далее именуемая – Продукция) в Республике Казахстан (далее  именуемая как Территория), при этом стороны договорились о том, что все расходы, произведенные «АГЕНТОМ » в связи с исполнением настоящего поручения предусмотрены и оплачены агентским вознаграждением.', '', '0000-00-00'),
 (19, 'asd', 'ter', '+77004000556', 2, 'asd', 1, 2, '', '', '2020-11-03'),
 (20, 'test', '', 'test', 1, 'test', 2, 1, '', '', '2020-11-03'),
-(27, 'Иван', 'Петров', '+7(700) 400-0556', 2, 'ef86656266184d77e084510113a11edf', 1, 2, 'Работаю 24/7 каждый день', '', '0000-00-00'),
+(27, 'Иван', 'Петров', '+7(700) 400-0556', 2, 'ef86656266184d77e084510113a11edf', 1, 2, 'Работаю 24/7 каждый день', 'avatar/1605431820.jpg', '0000-00-00'),
 (30, 'IN YAN', '', '+7(778) 137-3477', 2, 'ef86656266184d77e084510113a11edf', 1, 1, 'Ответственный', '', '0000-00-00');
 
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `users_photo`
+-- Table structure for table `users_photo`
 --
 
 CREATE TABLE `users_photo` (
@@ -260,7 +319,7 @@ CREATE TABLE `users_photo` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `users_photo`
+-- Dumping data for table `users_photo`
 --
 
 INSERT INTO `users_photo` (`ID`, `PHOTO_NAME`, `USER_ID`) VALUES
@@ -270,7 +329,7 @@ INSERT INTO `users_photo` (`ID`, `PHOTO_NAME`, `USER_ID`) VALUES
 -- --------------------------------------------------------
 
 --
--- Структура таблицы `users_speciality`
+-- Table structure for table `users_speciality`
 --
 
 CREATE TABLE `users_speciality` (
@@ -280,7 +339,7 @@ CREATE TABLE `users_speciality` (
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
--- Дамп данных таблицы `users_speciality`
+-- Dumping data for table `users_speciality`
 --
 
 INSERT INTO `users_speciality` (`ID`, `USER_ID`, `USER_SPECIALITY`) VALUES
@@ -303,146 +362,165 @@ INSERT INTO `users_speciality` (`ID`, `USER_ID`, `USER_SPECIALITY`) VALUES
 (43, 30, 9);
 
 --
--- Индексы сохранённых таблиц
+-- Indexes for dumped tables
 --
 
 --
--- Индексы таблицы `chat`
+-- Indexes for table `chat`
 --
 ALTER TABLE `chat`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Индексы таблицы `dic_country`
+-- Indexes for table `dic_country`
 --
 ALTER TABLE `dic_country`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Индексы таблицы `documents`
+-- Indexes for table `dic_need`
+--
+ALTER TABLE `dic_need`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `documents`
 --
 ALTER TABLE `documents`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Индексы таблицы `price`
+-- Indexes for table `price`
 --
 ALTER TABLE `price`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Индексы таблицы `review`
+-- Indexes for table `review`
 --
 ALTER TABLE `review`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Индексы таблицы `services`
+-- Indexes for table `services`
 --
 ALTER TABLE `services`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Индексы таблицы `speciality`
+-- Indexes for table `speciality`
 --
 ALTER TABLE `speciality`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Индексы таблицы `tender`
+-- Indexes for table `tender`
 --
 ALTER TABLE `tender`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Индексы таблицы `users`
+-- Indexes for table `TENDER_COMMENT`
+--
+ALTER TABLE `TENDER_COMMENT`
+  ADD PRIMARY KEY (`ID`);
+
+--
+-- Indexes for table `users`
 --
 ALTER TABLE `users`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Индексы таблицы `users_photo`
+-- Indexes for table `users_photo`
 --
 ALTER TABLE `users_photo`
   ADD PRIMARY KEY (`ID`);
 
 --
--- Индексы таблицы `users_speciality`
+-- Indexes for table `users_speciality`
 --
 ALTER TABLE `users_speciality`
   ADD PRIMARY KEY (`ID`);
 
 --
--- AUTO_INCREMENT для сохранённых таблиц
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT для таблицы `chat`
+-- AUTO_INCREMENT for table `chat`
 --
 ALTER TABLE `chat`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
--- AUTO_INCREMENT для таблицы `dic_country`
+-- AUTO_INCREMENT for table `dic_country`
 --
 ALTER TABLE `dic_country`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT для таблицы `documents`
+-- AUTO_INCREMENT for table `dic_need`
+--
+ALTER TABLE `dic_need`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `documents`
 --
 ALTER TABLE `documents`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT для таблицы `price`
+-- AUTO_INCREMENT for table `price`
 --
 ALTER TABLE `price`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
--- AUTO_INCREMENT для таблицы `review`
+-- AUTO_INCREMENT for table `review`
 --
 ALTER TABLE `review`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT для таблицы `services`
+-- AUTO_INCREMENT for table `services`
 --
 ALTER TABLE `services`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
--- AUTO_INCREMENT для таблицы `speciality`
+-- AUTO_INCREMENT for table `speciality`
 --
 ALTER TABLE `speciality`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT для таблицы `tender`
+-- AUTO_INCREMENT for table `tender`
 --
 ALTER TABLE `tender`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=122;
 
 --
--- AUTO_INCREMENT для таблицы `users`
+-- AUTO_INCREMENT for table `TENDER_COMMENT`
+--
+ALTER TABLE `TENDER_COMMENT`
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
+--
+-- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
 
 --
--- AUTO_INCREMENT для таблицы `users_photo`
+-- AUTO_INCREMENT for table `users_photo`
 --
 ALTER TABLE `users_photo`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
--- AUTO_INCREMENT для таблицы `users_speciality`
+-- AUTO_INCREMENT for table `users_speciality`
 --
 ALTER TABLE `users_speciality`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
