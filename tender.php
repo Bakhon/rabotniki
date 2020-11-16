@@ -127,7 +127,7 @@
 
         <div data-move-from="count" class="text-center">
             <div class="mb-3 text-muted">
-                Всего найдено <b class="tender-count">2</b> тендеров.            </div>
+                Всего найдено <b class="tender-count"><?php echo count_tender(); ?></b> тендеров.            </div>
         </div>
 
         <div id="pjaxTenders" data-pjax-container="" data-pjax-push-state data-pjax-timeout="1000">                                

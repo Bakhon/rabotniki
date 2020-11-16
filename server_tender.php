@@ -9,7 +9,7 @@ if(isset($_POST['address'])){
     $city = $_POST['city'];
     $address = $_POST['address'];
     $title = $_POST['title_tender'];
-    $text_editor = $_POST['text_editor'];
+    $text_editor = isset($_POST['text_editor']);
     $i = $_POST['i'];
     $i1 = $_POST['i1'];
     $i2 = $_POST['i2'];
@@ -56,7 +56,7 @@ if(isset($_POST['address'])){
 if(isset($_POST['title'])){
     require 'conn.php';
     require 'function_tender.php';
-    $page_id = $_POST['page_id'];
+    $page_id = isset($_POST['page_id']);
     $title = $_POST['title'];
     $tender_id = $_POST['tender_id'];
     $query = "SELECT TITLE, DESCRIPTION, PRICE, POST_DATE, ID_TENDER FROM `tender`  where STATUS = 1 and (TITLE LIKE '%$title%' or ID_TENDER LIKE '%$tender_id%') GROUP BY TITLE, DESCRIPTION, PRICE, POST_DATE, ID_TENDER";
@@ -124,9 +124,9 @@ if(isset($_POST['budget'])){
     require 'function_tender.php';
     $budget = $_POST['budget'];
     $budget = $budget[0];
-    $page_id = $_POST['page_id'];
-    $title = $_POST['title'];
-    $tender_id = $_POST['tender_id'];
+    $page_id = isset($_POST['page_id']);
+    $title = isset($_POST['title']);
+    $tender_id = isset($_POST['tender_id']);
 
     if($budget == '50000'){
         $start = 0;
@@ -136,7 +136,23 @@ if(isset($_POST['budget'])){
     {
         $start = 50000;
         $finish = 150000;
-    } else if($budget == '') {
+    } 
+    else if($budget == '300000')
+    {
+        $start = 150000;
+        $finish = 300000;
+    }
+    else if($budget == '500000')
+    {
+        $start = 300000;
+        $finish = 500000;
+    }
+    else if($budget == '500001')
+    {
+        $start = 500001;
+        $finish = 15000000;
+    }
+    else if($budget == '') {
         $start = '0';
         $finish = '1000000';
     }
@@ -204,7 +220,7 @@ if(isset($_POST['customer'])){
     require 'function_tender.php';
     $customer = $_POST['customer'];
     $customer = $customer[0];
-    $page_id = $_POST['page_id'];
+    $page_id = isset($_POST['page_id']);
     $query = "SELECT TITLE, DESCRIPTION, PRICE, POST_DATE, ID_TENDER FROM `tender`  where STATUS = 1 and WHOIS LIKE '%$customer%' GROUP BY TITLE, DESCRIPTION, PRICE, POST_DATE, ID_TENDER";
     $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link)); 
     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);

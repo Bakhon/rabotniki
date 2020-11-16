@@ -55,6 +55,14 @@ function dic_category(){
 }
 
 
+function count_tender(){
+    require 'conn.php';
+    $query = "SELECT TITLE, DESCRIPTION, PRICE, POST_DATE, ID_TENDER FROM `tender`  where STATUS = 1 GROUP BY TITLE, DESCRIPTION, PRICE, POST_DATE, ID_TENDER";
+    $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link)); 
+    $num_rows = mysqli_num_rows($result);
+    return $num_rows;
+}
+
 function get_tender($page){
     if($page == ''){
         $page = 1;
@@ -242,15 +250,14 @@ echo '
                                         </div>
                                     </div>
                                 </div>';
-if($rows[$i]['PATH_FILE']) {
+
                             echo   '<div id="w0" class="mt-3"
-                                <a href="'.$rows[$i]['PATH_FILE'].'">
+                                <a  href="'.$rows[$i]['PATH_FILE'].'">
                                 <img src="https://img.icons8.com/ios/50/000000/file--v1.png"/>
-                                 Файл</a>
-                                 
+                                 Файл</a>                                 
                                 </div>';
                                 
-}
+
                              echo    
                             '</div>
                         </div>
@@ -268,6 +275,8 @@ if($rows[$i]['PATH_FILE']) {
                                 <svg class="text-primary mr-2 i is-phone-alt"><use xlink:href="#s-phone-alt" /></use></svg>
                             </div>';
                             if($_SESSION) {
+                              if($rows[$i]['SHOW_PHONE'] == '1') 
+                            {
                           echo '<div class="show_number" style="display: inline-block;">'.$hidden_num.'xxx xxxx<br>
                                 <a id="show_n"  class="view-phone small" href="#" data-type="2" >
                                     Показать номер
@@ -282,7 +291,7 @@ if($rows[$i]['PATH_FILE']) {
                                 </div>
                                 ';
                                 
-                            }else{
+                           } }else{
                                 echo '<div class="show_number_ses" style="display: inline-block;">'.$hidden_num.'xxx xxxx<br>
                                 <a id="show_n_s"  class="view-phone small" href="#" data-type="2" >
                                     Показать номер
@@ -332,6 +341,15 @@ if($rows[$i]['PATH_FILE']) {
   
 }
 
+
+function count_tender_comments($id){
+     require 'conn.php';
+     $query = "SELECT * FROM `tender_comment` WHERE ID_TENDER = $id";
+     $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link)); 
+     $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+     $num_rows = mysqli_num_rows($result);
+     return $num_rows;
+}
 
 function tender_comments($id){
    require 'conn.php';
@@ -387,7 +405,7 @@ function tender_comments($id){
                             <div class="col-auto py-1">
                                 <a class="text-body font-weight-bold" href="employeeProfile.html" rel="nofollow">
                                     <svg class="mr-2 i is-comment-dots"><use xlink:href="#s-comment-dots" /></use></svg>
-                                    2 отзывов
+                                    '.count_tender_comments($row['ID_TENDER']).' отзывов
                                     </a>                                
                             </div>
                         </div>
