@@ -114,7 +114,7 @@ $rows2 = mysqli_fetch_all($result2, MYSQLI_ASSOC);
                           <button type="button" name="add" id="add" data-toggle="modal" data-target="#add_data_specializa" class="btn btn-primary">Добавить специализацию</button>                         
             </div>
             <div class="box-item" >  
-                          <button type="button" name="" id="" data-toggle="modal" data-target="#view_data_specializa" class="btn btn-primary">Просмотр специализации</button>                         
+                          <button type="button" name="add" id="add" data-toggle="modal" data-target="#view_data_specializa" class="btn btn-primary">Просмотр специализации</button>                         
             </div>
         <div class="box-item">  
                           <button type="button" name="add" id="add" data-toggle="modal" data-target="#add_data_Modal" class="btn btn-primary">Добавить сервис</button>                         
@@ -130,43 +130,43 @@ $rows2 = mysqli_fetch_all($result2, MYSQLI_ASSOC);
   </div>
 </div>
 
-<div id="add_data_Modal" class="modal fade">  
-      <div class="modal-dialog">  
-           <div class="modal-content">  
-                <div class="modal-header">  
-                     <button type="button" class="close" data-dismiss="modal">&times;</button>  
-                     <h4 class="modal-title">PHP Ajax Update MySQL Data Through Bootstrap Modal</h4>  
+            <div id="add_data_Modal" class="modal fade">  
+                <div class="modal-dialog">  
+                    <div class="modal-content">  
+                            <div class="modal-header">  
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>  
+                                <h4 class="modal-title">PHP Ajax Update MySQL Data Through Bootstrap Modal</h4>  
+                            </div>  
+                            <div class="modal-body">  
+                                <form method="post" id="insert_form">  
+                                                                
+                                    <label>Выберите специализацию</label>  
+                                    <select name="select_spec" id="select_spec" class="form-control">  
+                                    <?php require 'conn.php'; 
+                                    $query = "SELECT * FROM `speciality`";
+                                    $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
+                                    $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                                    print_r($rows);
+                                    foreach($rows as $row) {
+                                    ?>
+                                        <option value="<?php echo $row['ID']; ?>"><?php echo $row['NAME_SPEC']; ?></option>                                
+                                    <?php } ?>
+                                    </select>  
+                                    <br />  
+                                    <label>Наименование сервиса</label>  
+                                    <input type="text" name="speciality[]" id="speciality" class="form-control" />  
+                                    <br />                                                                       
+                                    
+                                </form>  
+                            </div>  
+                            <div class="modal-footer"> 
+                            <button type="button" name="add_speciality" id="add_speciality" class="btn btn-primary">Добавить еще</button> 
+                            <input type="submit" name="save_spec" id="save_spec" value="Сохранить" class="btn btn-success" />   
+                                <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>  
+                            </div>  
+                    </div>  
                 </div>  
-                <div class="modal-body">  
-                     <form method="post" id="insert_form">  
-                                                     
-                          <label>Выберите специализацию</label>  
-                          <select name="select_spec" id="select_spec" class="form-control">  
-                          <?php require 'conn.php'; 
-                          $query = "SELECT * FROM `speciality`";
-                          $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
-                          $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
-                          print_r($rows);
-                          foreach($rows as $row) {
-                          ?>
-                               <option value="<?php echo $row['ID']; ?>"><?php echo $row['NAME_SPEC']; ?></option>                                
-                          <?php } ?>
-                          </select>  
-                          <br />  
-                          <label>Наименование сервиса</label>  
-                          <input type="text" name="speciality[]" id="speciality" class="form-control" />  
-                          <br />                                                                       
-                         
-                     </form>  
-                </div>  
-                <div class="modal-footer"> 
-                <button type="button" name="add_speciality" id="add_speciality" class="btn btn-primary">Добавить еще</button> 
-                <input type="submit" name="save_spec" id="save_spec" value="Сохранить" class="btn btn-success" />   
-                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>  
-                </div>  
-           </div>  
-      </div>  
- </div>
+            </div>
 
 
  <div id="add_data_specializa" class="modal fade">  
@@ -192,41 +192,39 @@ $rows2 = mysqli_fetch_all($result2, MYSQLI_ASSOC);
            </div>  
       </div>  
  </div>
-
- 
- <div id="view_data_specializa" class="modal fade">  
-      <div class="modal-dialog">  
-           <div class="modal-content">  
-                <div class="modal-header">  
-                     <button type="button" class="close" data-dismiss="modal">&times;</button>  
-                     <h4 class="modal-title">Просмотр</h4>  
-                </div>  
-                <div class="modal-body">  
-                <div class="table-responsive">  
-           <table class="table table-bordered">  
-                <tr>  
-                     <th width="10%">Id</th>  
-                     <th width="40%">Имя сервиса</th>  
-                     <th width="40%">Специализация</th>  
-                     <th width="10%">Удалить</th>  
-                </tr>';  
-                <tr>  
-                     <td></td>  
-                     <td class="first_name" data-id1="" ></td>  
-                     <td class="last_name" data-id2="" ></td>  
-                     <td><button type="button" name="delete_btn" data-id3="" class="btn btn-xs btn-danger btn_delete">x</button></td>  
-                </tr>   
-                </div>  
-                <div class="modal-footer"> 
-                <button type="button" name="add_services" id="add_services" class="btn btn-primary">Добавить еще</button> 
-                <input type="submit" name="save_services" id="save_services" value="Сохранить" class="btn btn-success" />   
-                     <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>  
-                </div>  
-           </div>  
-      </div>  
- </div>
-
-
-
 </div>
+
+
+<div id="view_data_specializa" class="modal fade">  
+                    <div class="modal-dialog">  
+                        <div class="modal-content">  
+                                <div class="modal-header">  
+                                    <button type="button" class="close" data-dismiss="modal">&times;</button>  
+                                    <h4 class="modal-title">Просмотр</h4>  
+                                </div>  
+                                <div class="modal-body">  
+                                <div class="table-responsive">  
+                        <table class="table table-bordered">  
+                                <tr>  
+                                    <th width="10%">Id</th>  
+                                    <th width="40%">Имя сервиса</th>  
+                                    <th width="40%">Специализация</th>  
+                                    <th width="10%">Удалить</th>  
+                                </tr>';  
+                                <tr>  
+                                    <td></td>  
+                                    <td class="first_name" data-id1="" ></td>  
+                                    <td class="last_name" data-id2="" ></td>  
+                                    <td><button type="button" name="delete_btn" data-id3="" class="btn btn-xs btn-danger btn_delete">x</button></td>  
+                                </tr>   
+                                </div>  
+                                <div class="modal-footer"> 
+                                <button type="button" name="add_services" id="add_services" class="btn btn-primary">Добавить еще</button> 
+                                <input type="submit" name="save_services" id="save_services" value="Сохранить" class="btn btn-success" />   
+                                    <button type="button" class="btn btn-default" data-dismiss="modal">Закрыть</button>  
+                                </div>  
+                        </div>  
+                    </div>  
+        </div>
+        
 <?php require_once 'Theme/blocks/footer.php'; ?>

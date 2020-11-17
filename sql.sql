@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Ноя 16 2020 г., 13:20
+-- Время создания: Ноя 17 2020 г., 13:24
 -- Версия сервера: 10.4.14-MariaDB
 -- Версия PHP: 7.4.11
 
@@ -209,12 +209,11 @@ CREATE TABLE `services` (
 --
 
 INSERT INTO `services` (`ID`, `NAME_SERV`, `SPECID`) VALUES
-(7, 'Строительство гаража', 3),
-(6, 'Строительство сруба', 3),
+(7, 'Строительство гараж', 3),
+(6, 'Строительство дома', 3),
 (5, 'Ремонт офиса', 3),
-(4, 'Ремонт кухни', 3),
-(8, 'Работа 2', 4),
-(9, 'Работа 3', 4);
+(25, '123', 3),
+(28, 'Услуга некомплексная работа', 4);
 
 -- --------------------------------------------------------
 
@@ -232,7 +231,7 @@ CREATE TABLE `speciality` (
 --
 
 INSERT INTO `speciality` (`ID`, `NAME_SPEC`) VALUES
-(3, 'КОМПЛЕКСНЫЕ РАБОТЫ'),
+(3, 'Комплексные работы'),
 (4, 'Некомплексные работы');
 
 -- --------------------------------------------------------
@@ -274,7 +273,9 @@ INSERT INTO `tender` (`ID`, `ADDRES`, `WE_NEED`, `TITLE`, `DESCRIPTION`, `PATH_F
 (120, 'Новый район', 3, 'Укладка 100 кв.м. тротуарной плитки на бетонное основание', 'Подробное описание тендера\r\n', 'tender/Техническое задание проекта job.docx', 5, 2, 80000, '2020-11-20', '2020-11-27', 'Bahon', '+7(700) 400-0556', 1, '2020-11-14', 1, 27, 807985, 0),
 (121, 'Новый район', 3, 'Укладка 100 кв.м. тротуарной плитки на бетонное основание', 'Подробное описание тендера\r\n', 'tender/Техническое задание проекта job.docx', 8, 2, 80000, '2020-11-20', '2020-11-27', 'Bahon', '+7(700) 400-0556', 1, '2020-11-14', 1, 27, 807985, 0),
 (122, 'qwe', 1, 'qwe', 'Lorem Ipsum&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n', 'tender/', 7, 1, 80000, '2020-11-17', '2020-11-24', 'Шерлок', '+7(771) 980-5314', 1, '2020-11-16', 0, 27, 377332, NULL),
-(123, 'фывыф', 0, 'фывыф', 'фывыф\n', 'tender/tnsnames.ora.txt', 7, 1, 1231, '2020-11-17', '2020-11-24', 'Шерлок', '+7(771) 980-5314', 1, '2020-11-16', 1, 27, 308471, NULL);
+(123, 'фывыф', 0, 'фывыф', 'фывыф\n', 'tender/tnsnames.ora.txt', 7, 1, 1231, '2020-11-17', '2020-11-24', 'Шерлок', '+7(771) 980-5314', 1, '2020-11-16', 0, 27, 308471, NULL),
+(124, 'Новый тендер', 0, 'Ремонт офиса', 'Ремонт офиса\r\n', 'tender/', 5, 1, 80000, '2020-11-18', '2020-11-25', 'Bahon', '+7(700) 400-0556', 1, '2020-11-17', 0, 27, 90285, NULL),
+(125, 'asdsa', 0, 'dasd', 'asdsa\r\n', 'tender/', 7, 2, 13213, '2020-11-18', '2020-11-25', 'Mist', '+7(700) 000-0000', 1, '2020-11-17', 1, 27, 347052, NULL);
 
 -- --------------------------------------------------------
 
@@ -303,7 +304,8 @@ INSERT INTO `tender_comment` (`ID`, `COMMENT`, `ID_USER`, `ID_TENDER`, `POST_DAT
 (6, 'Новая ', 27, 864653, '2020-11-15 09:49:35'),
 (7, 'Готов выполнить данный заказ', 27, 864653, '2020-11-15 10:48:12'),
 (8, 'qwe', 27, 864653, '2020-11-16 04:55:50'),
-(9, 'test', 27, 308471, '2020-11-16 05:15:20');
+(9, 'test', 27, 308471, '2020-11-16 05:15:20'),
+(10, 'Готов приступить к работе! ', 27, 347052, '2020-11-17 07:21:28');
 
 -- --------------------------------------------------------
 
@@ -330,7 +332,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`ID`, `NAME`, `LASTNAME`, `PHONE`, `TYPE`, `PASSWORD`, `STATUS`, `LOCATION`, `ABOUT`, `AVATAR`, `POST_DATE`) VALUES
-(29, 'Макпал', '', '+7(778) 142-0449', 1, '4549e2ac35e84f7c8b6d73b71bc4a5e3', 0, 1, '1.1. Агент и Принципал согласны официально подтвердить свое сотрудничество подписанием данного договора.  В течение  срока действия Договора, Агент вправе  продвигать    продукцию   клиентам Принципала – программное обеспечение для стоматологических клиник Dent Time  – (далее именуемая – Продукция) в Республике Казахстан (далее  именуемая как Территория), при этом стороны договорились о том, что все расходы, произведенные «АГЕНТОМ » в связи с исполнением настоящего поручения предусмотрены и оплачены агентским вознаграждением.', '', '0000-00-00'),
+(29, 'Макпал', '', '+7(778) 142-0449', 1, '4549e2ac35e84f7c8b6d73b71bc4a5e3', 1, 1, '1.1. Агент и Принципал согласны официально подтвердить свое сотрудничество подписанием данного договора.  В течение  срока действия Договора, Агент вправе  продвигать    продукцию   клиентам Принципала – программное обеспечение для стоматологических клиник Dent Time  – (далее именуемая – Продукция) в Республике Казахстан (далее  именуемая как Территория), при этом стороны договорились о том, что все расходы, произведенные «АГЕНТОМ » в связи с исполнением настоящего поручения предусмотрены и оплачены агентским вознаграждением.', '', '0000-00-00'),
 (19, 'asd', 'ter', '+77004000556', 2, 'asd', 0, 2, '', '', '2020-11-03'),
 (20, 'test', '', 'test', 1, 'test', 1, 1, '', '', '2020-11-03'),
 (27, 'Иван', 'Петров', '+7(700) 400-0556', 2, 'ef86656266184d77e084510113a11edf', 1, 2, 'Работаю 24/7 каждый день', 'avatar/1605431820.jpg', '0000-00-00'),
@@ -529,25 +531,25 @@ ALTER TABLE `review`
 -- AUTO_INCREMENT для таблицы `services`
 --
 ALTER TABLE `services`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT для таблицы `speciality`
 --
 ALTER TABLE `speciality`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT для таблицы `tender`
 --
 ALTER TABLE `tender`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=124;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
 
 --
 -- AUTO_INCREMENT для таблицы `tender_comment`
 --
 ALTER TABLE `tender_comment`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT для таблицы `users`

@@ -162,11 +162,13 @@ $(document).on('click', '.btn_delete', function(){
            var id = $(this).data("id1");  
            var first_name = $(this).text();  
            edit_data(id, first_name, "services", "NAME_SERV");  
+           fetch_data();
       });  
       $(document).on('blur', '.last_name', function(){  
            var id = $(this).data("id2");  
            var last_name = $(this).text();  
            edit_data(id, last_name, "speciality", "NAME_SPEC");  
+           fetch_data();
       });
 
       var i=1;  
