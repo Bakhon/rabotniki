@@ -85,11 +85,12 @@ $.post('server_admin.php', {"login": $login, "pass": $pass}, function(d){
 
 })
 $(document).ready(function(){  
-$(document).on('click', '.edit_data', function(){ 
+$(document).on('change', '.edit_data', function(){ 
     
-    var employee_id =  $('#uss').val();
+    var employee_id =  $(this).attr("data-id");
     var user_state = document.querySelector("#user_state").value;
     console.log(employee_id);
+    console.log(user_state);
     $.post('server_admin.php', {"employee_id": employee_id, "user_state": user_state}, function(d){
        // location.reload();
     });
@@ -97,6 +98,117 @@ $(document).on('click', '.edit_data', function(){
 })
 
 
+$(document).ready(function(){  
+$(document).on('change', '.edit_tender', function(){ 
+    
+    var tender_id =  $(this).attr("data-id");
+    var tender_state = document.querySelector("#tender_state").value;
+    console.log(tender_id);
+    console.log(tender_state);
+    $.post('server_admin.php', {"tender_id": tender_id, "tender_state": tender_state}, function(d){
+       // location.reload();
+    });
+});
+})
+
+
+$(document).ready(function(){  
+      function fetch_data()  
+      {  
+           $.ajax({  
+                url:"select.php",  
+                method:"POST",  
+                success:function(data){  
+                     $('#live_data').html(data);  
+                }  
+           });  
+      }  
+      fetch_data(); 
+
+    
+
+$(document).on('click', '.btn_delete', function(){  
+           var id=$(this).attr("id3");  
+           console.log(id);
+           if(confirm("Вы действительно хотите удалить?"))  
+           {  
+                $.ajax({  
+                     url:"function_admin.php",  
+                     method:"POST",  
+                     data:{id:id},  
+                     dataType:"text",  
+                     success:function(data){  
+                          alert(data);  
+                          fetch_data();  
+                     }  
+                });  
+           }  
+      }); 
+
+
+      function edit_data(id, text, table_name, column)  
+      {  
+           $.ajax({  
+                url:"function_admin.php",  
+                method:"POST",  
+                data:{edit_id:id, text:text, table_name: table_name, column: column},  
+                dataType:"text",  
+                success:function(data){  
+                     alert(data);  
+                }  
+           });  
+      }  
+      $(document).on('blur', '.first_name', function(){  
+           var id = $(this).data("id1");  
+           var first_name = $(this).text();  
+           edit_data(id, first_name, "services", "NAME_SERV");  
+      });  
+      $(document).on('blur', '.last_name', function(){  
+           var id = $(this).data("id2");  
+           var last_name = $(this).text();  
+           edit_data(id, last_name, "speciality", "NAME_SPEC");  
+      });
+
+      var i=1;  
+      $('#add_speciality').click(function(){  
+           i++;  
+           $('#insert_form').append('<label>Наименование сервиса</label><input class="form-control" type="text" name="speciality[]" id="speciality" value="" /><hr/>');  
+      });
+
+      $('#save_spec').click(function(){            
+           $.ajax({  
+                url:"function_admin.php",  
+                method:"POST",  
+                data:$('#insert_form').serialize(),  
+                success:function(data)  
+                {  
+                     alert(data);  
+                     $('#insert_form')[0].reset();  
+                     fetch_data();
+                }  
+           });  
+      });
+
+      var i=1;  
+      $('#add_services').click(function(){  
+           i++;  
+           $('#insert_sevices').append('<label>Наименование Специализации</label><input class="form-control" type="text" name="services[]" id="services" value="" /><hr/>');  
+      });
+
+      $('#save_services').click(function(){            
+           $.ajax({  
+                url:"function_admin.php",  
+                method:"POST",  
+                data:$('#insert_sevices').serialize(),  
+                success:function(data)  
+                {  
+                     alert(data);  
+                     $('#insert_sevices')[0].reset();  
+                }  
+           });  
+      });
+
+    });
 
 
 </script>

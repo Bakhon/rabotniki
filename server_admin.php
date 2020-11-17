@@ -23,12 +23,21 @@ if(isset($_POST['employee_id'])){
     require 'conn.php';
     $user_state = $_POST['user_state'];
     $employee_id = $_POST['employee_id'];
-    if($user_state == 0){
-       $user_state = 1; 
-    }else {
-        $user_state = 0;
-    }
+  
     $query = "UPDATE `users` SET `STATUS` = '$user_state' where ID =  $employee_id";    
+    echo $query;
+    $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link)); 
+    
+   exit;
+}
+
+
+if(isset($_POST['tender_id'])){
+    require 'conn.php';
+    $tender_state = $_POST['tender_state'];
+    $tender_id = $_POST['tender_id'];
+  
+    $query = "UPDATE `tender` SET `STATUS` = '$tender_state' where ID_TENDER =  $tender_id";    
     echo $query;
     $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link)); 
     
