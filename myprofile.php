@@ -555,14 +555,14 @@ require_once 'function.php';
 
 
             <!-- Отправить сообщение -->
-            <!--
+            
             <div class="px-4">
                 <button type="button" class="btn btn-secondary btn-lg btn-block my-4" >                        
                     
-                    <a href="message.html" class="btn btn-secondary btn-lg btn-block my-4" >
-                        <svg class="mr-2 i is-envelope"><use xlink:href="#s-envelope" /></use></svg>Отправить сообщение</a>
+                    <a href="message.php?getid=<?php echo $_SESSION['id']; ?>" class="btn btn-secondary btn-lg btn-block my-4" >
+                        <svg class="mr-2 i is-envelope"><use xlink:href="#s-envelope" /></use></svg>Мои сообщения</a>
             </div>
-            -->
+            
 
            <?php if($row['TYPE'] == '2') { ?>
             <div class="mt-5 border mb-5 pt-3 pb-4 px-1 rounded-xl shadow-sm">
