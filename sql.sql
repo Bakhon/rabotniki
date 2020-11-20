@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Хост: 127.0.0.1
--- Время создания: Ноя 18 2020 г., 13:21
+-- Время создания: Ноя 20 2020 г., 13:18
 -- Версия сервера: 10.4.14-MariaDB
 -- Версия PHP: 7.4.11
 
@@ -61,24 +61,12 @@ CREATE TABLE `chat` (
 --
 
 INSERT INTO `chat` (`ID`, `FROM_USER`, `TO_USER`, `MSG`, `FILE`, `POST_DATE`, `POST_TIME`) VALUES
-(1, 21, 21, 'test', '', '2020-11-02 18:00:00', ''),
-(2, 21, 19, 'asd', '', '2020-11-03 06:07:47', ''),
-(3, 21, 19, 'tema', '', '2020-11-03 06:15:14', ''),
-(4, 21, 19, 'asd', '', '2020-11-03 06:16:46', ''),
-(5, 21, 19, 'theme', '', '2020-11-03 06:16:50', ''),
-(6, 21, 19, 'asd', '', '2020-11-03 06:19:59', ''),
-(7, 21, 19, 'test', '', '2020-11-03 11:22:40', ''),
-(8, 21, 19, 'привет ', '', '2020-11-03 11:23:01', ''),
-(9, 26, 23, 'test', '', '2020-11-05 00:34:04', ''),
-(10, 26, 23, 'test', '', '2020-11-05 00:34:04', ''),
-(25, 26, 23, 'test', '', '2020-11-05 00:56:41', ''),
-(24, 26, 23, 'zaq', '', '2020-11-05 00:56:35', ''),
-(58, 27, 30, 'asdsad', '', '2020-11-18 07:19:51', ''),
-(57, 27, 30, 'Привет ', '', '2020-11-18 07:16:23', ''),
-(56, 30, 27, 'Привет Всем', '', '2020-11-18 07:15:55', ''),
-(55, 30, 0, 'Привет', '', '2020-11-18 07:12:02', ''),
-(54, 30, 0, 'dsadsa', '', '2020-11-18 07:11:53', ''),
-(53, 30, 0, 'dsadsa', '', '2020-11-18 07:11:53', '');
+(116, 27, 30, 'Ладно', '', '2020-11-19 04:47:05', ''),
+(115, 30, 27, 'Гоу ', '', '2020-11-19 04:41:12', ''),
+(114, 30, 27, 'Хорошо', '', '2020-11-19 04:39:51', ''),
+(113, 27, 30, 'Как дела?', '', '2020-11-19 04:32:12', ''),
+(112, 27, 30, 'Привет', '', '2020-11-19 04:22:07', ''),
+(111, 30, 27, 'Салем', '', '2020-11-19 04:21:39', '');
 
 -- --------------------------------------------------------
 
@@ -204,18 +192,21 @@ INSERT INTO `review` (`ID`, `REV_TENDER`, `LIKE_REV`, `NOTLIKE_REV`, `ALL_CONCL`
 CREATE TABLE `services` (
   `ID` int(11) NOT NULL,
   `NAME_SERV` varchar(255) NOT NULL,
-  `SPECID` int(11) NOT NULL
+  `SPECID` int(11) NOT NULL,
+  `FILE_PATH` varchar(200) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 --
 -- Дамп данных таблицы `services`
 --
 
-INSERT INTO `services` (`ID`, `NAME_SERV`, `SPECID`) VALUES
-(7, 'Строительство гараж', 3),
-(6, 'Строительство дома', 3),
-(5, 'Ремонт офиса', 3),
-(28, 'Услуга некомплексная работа', 4);
+INSERT INTO `services` (`ID`, `NAME_SERV`, `SPECID`, `FILE_PATH`) VALUES
+(7, 'Строительство гараж', 3, ''),
+(6, 'Строительство дома', 3, ''),
+(5, 'Ремонт офиса', 3, ''),
+(31, 'Комлпексная услуга', 3, ''),
+(32, 'Некомплексная работа', 4, ''),
+(39, 'некомплексная работа 123', 4, 'services/');
 
 -- --------------------------------------------------------
 
@@ -276,8 +267,10 @@ INSERT INTO `tender` (`ID`, `ADDRES`, `WE_NEED`, `TITLE`, `DESCRIPTION`, `PATH_F
 (121, 'Новый район', 3, 'Укладка 100 кв.м. тротуарной плитки на бетонное основание', 'Подробное описание тендера\r\n', 'tender/Техническое задание проекта job.docx', 8, 2, 80000, '2020-11-20', '2020-11-27', 'Bahon', '+7(700) 400-0556', 1, '2020-11-14', 1, 27, 807985, 0),
 (122, 'qwe', 1, 'qwe', 'Lorem Ipsum&nbsp;is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry&#39;s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.\n', 'tender/', 7, 1, 80000, '2020-11-17', '2020-11-24', 'Шерлок', '+7(771) 980-5314', 1, '2020-11-16', 0, 27, 377332, NULL),
 (123, 'фывыф', 0, 'фывыф', 'фывыф\n', 'tender/tnsnames.ora.txt', 7, 1, 1231, '2020-11-17', '2020-11-24', 'Шерлок', '+7(771) 980-5314', 1, '2020-11-16', 0, 27, 308471, NULL),
-(124, 'Новый тендер', 0, 'Ремонт офиса', 'Ремонт офиса\r\n', 'tender/', 5, 1, 80000, '2020-11-18', '2020-11-25', 'Bahon', '+7(700) 400-0556', 1, '2020-11-17', 0, 27, 90285, NULL),
-(125, 'asdsa', 0, 'dasd', 'asdsa\r\n', 'tender/', 7, 2, 13213, '2020-11-18', '2020-11-25', 'Mist', '+7(700) 000-0000', 1, '2020-11-17', 1, 27, 347052, NULL);
+(124, 'Новый тендер', 0, 'Ремонт офиса', 'Ремонт офиса\r\n', 'tender/', 5, 1, 80000, '2020-11-18', '2020-11-25', 'Bahon', '+7(700) 400-0556', 1, '2020-11-17', 1, 27, 90285, NULL),
+(125, 'asdsa', 0, 'dasd', 'asdsa\r\n', 'tender/', 7, 2, 13213, '2020-11-18', '2020-11-25', 'Mist', '+7(700) 000-0000', 1, '2020-11-17', 1, 27, 347052, NULL),
+(126, 'Услуга барбера', 2, 'Услуга барбера', 'Услуга барбера\r\n', 'tender/', 32, 1, 900000, '2020-11-20', '2020-11-26', 'Барбер', '+7(778) 784-5565', 1, '2020-11-19', 1, 27, 61163, NULL),
+(127, 'Иманова', 1, 'Работа офисная ремонт', 'Работа офисная ремонт\n', 'tender/', 5, 1, 800000, '2020-11-20', '2020-11-27', 'Артур', '+7(700) 400-0555', 1, '2020-11-20', 0, 27, 594209, NULL);
 
 -- --------------------------------------------------------
 
@@ -307,7 +300,8 @@ INSERT INTO `tender_comment` (`ID`, `COMMENT`, `ID_USER`, `ID_TENDER`, `POST_DAT
 (7, 'Готов выполнить данный заказ', 27, 864653, '2020-11-15 10:48:12'),
 (8, 'qwe', 27, 864653, '2020-11-16 04:55:50'),
 (9, 'test', 27, 308471, '2020-11-16 05:15:20'),
-(10, 'Готов приступить к работе! ', 27, 347052, '2020-11-17 07:21:28');
+(10, 'Готов приступить к работе! ', 27, 347052, '2020-11-17 07:21:28'),
+(11, 'Предложение есть', 27, 61163, '2020-11-19 05:55:18');
 
 -- --------------------------------------------------------
 
@@ -335,7 +329,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`ID`, `NAME`, `LASTNAME`, `PHONE`, `TYPE`, `PASSWORD`, `STATUS`, `LOCATION`, `ABOUT`, `AVATAR`, `POST_DATE`) VALUES
 (29, 'Макпал', '', '+7(778) 142-0449', 1, '4549e2ac35e84f7c8b6d73b71bc4a5e3', 1, 1, '1.1. Агент и Принципал согласны официально подтвердить свое сотрудничество подписанием данного договора.  В течение  срока действия Договора, Агент вправе  продвигать    продукцию   клиентам Принципала – программное обеспечение для стоматологических клиник Dent Time  – (далее именуемая – Продукция) в Республике Казахстан (далее  именуемая как Территория), при этом стороны договорились о том, что все расходы, произведенные «АГЕНТОМ » в связи с исполнением настоящего поручения предусмотрены и оплачены агентским вознаграждением.', '', '0000-00-00'),
-(19, 'asd', 'ter', '+77004000556', 2, 'asd', 0, 2, '', '', '2020-11-03'),
+(19, 'asd', 'ter', '+77004000556', 2, 'asd', 1, 2, '', '', '2020-11-03'),
 (20, 'test', '', 'test', 1, 'test', 1, 1, '', '', '2020-11-03'),
 (27, 'Иван', 'Петров', '+7(700) 400-0556', 2, 'ef86656266184d77e084510113a11edf', 1, 2, 'Работаю 24/7 каждый день', 'avatar/1605431820.jpg', '0000-00-00'),
 (30, 'IN YAN', '', '+7(778) 137-3477', 1, 'ef86656266184d77e084510113a11edf', 1, 1, 'Ответственный', 'avatar/1605693332.jpg', '0000-00-00');
@@ -497,7 +491,7 @@ ALTER TABLE `admin`
 -- AUTO_INCREMENT для таблицы `chat`
 --
 ALTER TABLE `chat`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=59;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 
 --
 -- AUTO_INCREMENT для таблицы `dic_country`
@@ -515,7 +509,7 @@ ALTER TABLE `dic_need`
 -- AUTO_INCREMENT для таблицы `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT для таблицы `price`
@@ -533,7 +527,7 @@ ALTER TABLE `review`
 -- AUTO_INCREMENT для таблицы `services`
 --
 ALTER TABLE `services`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
 
 --
 -- AUTO_INCREMENT для таблицы `speciality`
@@ -545,13 +539,13 @@ ALTER TABLE `speciality`
 -- AUTO_INCREMENT для таблицы `tender`
 --
 ALTER TABLE `tender`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=126;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=128;
 
 --
 -- AUTO_INCREMENT для таблицы `tender_comment`
 --
 ALTER TABLE `tender_comment`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT для таблицы `users`
@@ -563,7 +557,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT для таблицы `users_photo`
 --
 ALTER TABLE `users_photo`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=56;
 
 --
 -- AUTO_INCREMENT для таблицы `users_speciality`
