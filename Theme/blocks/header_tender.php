@@ -64,7 +64,7 @@ error_reporting(0);?>
 
             <!-- logo -->
             <div class="col-auto py-2 pr-0">
-                <a href="first.html"><img src="Theme/images/rabotniki.png" height="60" alt="SiteName.KZ"></a>            
+                <a href="index.php"><img src="Theme/images/rabotniki.png" height="60" alt="SiteName.KZ"></a>            
             </div>
           
                 <div class="col-1 text-center p-0"> </div>
@@ -85,19 +85,24 @@ error_reporting(0);?>
                 </small>
             </div>
 
-            <!-- Registration/LogIn -->
-            <div class="col-auto">
-                    <ul class="my-2 flex-column nav" style="width: 280px; margin-left: 1.2rem;">
-                        <li class="nav-item text-center">
-                            <a class="nav-link" href="register.php">
-                                <svg class="mr-2 i is-user-plus"><use xlink:href="#s-user-plus"></use></svg>Зарегистрироваться</a>
-                        </li>
-                        <li class="nav-item text-center">
-                            <a class="nav-link" href="login.php">
-                                <svg class="mr-2 i is-sign-in-alt"><use xlink:href="#s-sign-in-alt"></use></svg>Войти</a>
+             <!-- Registration/LogIn -->
+             <div class="col-auto">
+                        <ul class="my-2 flex-column nav" style="width: 280px; margin-left: 1.2rem;">
+                            <li class="nav-item text-center">
+                                <a class="nav-link" href="register.php">
+                                    <svg class="mr-2 i is-user-plus"><use xlink:href="#s-user-plus"></use></svg>Зарегистрироваться</a>
                             </li>
-                    </ul>                           
-            </div>
+                            <li class="nav-item text-center">
+                            <?php if($_SESSION) { ?>
+                                <a class="nav-link" href="myprofile.php">                                   
+                                <i class="fa fa-user" aria-hidden="true"> Личный кабинет</i></a>
+                                    <?php }else{ ?>
+                                        <a class="nav-link" href="login.php">                                   
+                                    <svg class="mr-2 i is-sign-in-alt"><use xlink:href="#s-sign-in-alt"></use></svg>Войти</a>
+                                    <?php } ?>
+                                </li>
+                        </ul>                           
+                </div>
 
         </div>
     </div>
@@ -112,7 +117,7 @@ error_reporting(0);?>
         </button>
         
         <div class="navbar-content">
-            <a class="btn btn-lg text-white px-3" href="login.html">
+            <a class="btn btn-lg text-white px-3" href="index.php">
                 <svg class="i is-sign-in-alt"><use xlink:href="#s-sign-in-alt"></use></svg>
             </a>
         </div>
@@ -121,7 +126,7 @@ error_reporting(0);?>
             <div class="d-lg-none">
                 <div class="header-menu px-3 pt-3 pb-2 mb-2">
                     <div class="mt-1 mb-2">
-                        <a class="h3 font-weight-bold" href="first.html">SiteName.KZ</a>
+                        <a class="h3 font-weight-bold" href="index.php">SiteName.KZ</a>
                     </div>
                     <a href="register.php">Регистрация</a> | 
                     <a href="login.php">Войти</a>

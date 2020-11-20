@@ -4,10 +4,12 @@ if(isset($_POST['speciality']))
 {
     $select_spec = $_POST['select_spec'];
     $speciality = $_POST['speciality'];
-
+    $target_directory = "services/";
+  //  print_r($_FILES);
+    $target_file = $target_directory.basename($_FILES["file"]["name"]);
     require 'conn.php';
     foreach($speciality as $v) {
-    $query = "INSERT INTO `services`(`NAME_SERV`, `SPECID`) VALUES ('$v', '$select_spec')";
+    $query = "INSERT INTO `services`(`NAME_SERV`, `SPECID`, `FILE_PATH`) VALUES ('$v', '$select_spec', '$target_file')";
     $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));    
     }
     echo 'Добавлено!';

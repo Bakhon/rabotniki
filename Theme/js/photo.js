@@ -1,3 +1,26 @@
+
+$(document).on('click', '#delete_pics', function(){  
+  var photos = $(this).attr('data-id');
+    var user_id = $(this).attr('data-session');
+  console.log(photos);
+  console.log(user_id);
+  if(confirm("Вы действительно хотите удалить?"))  
+  {  
+       $.ajax({  
+            url:"php/post.php",  
+            method:"POST",  
+            data:{photos_id:photos, user_id: user_id},  
+            dataType:"text",  
+            success:function(data){  
+              //   alert(data);  
+                 location.reload();
+               //  fetch_data();  
+            }  
+       });  
+  }  
+});
+
+/*
 $('#delete_pics').click(function(){
     
     var photos = $(this).attr('data-id');
@@ -11,9 +34,29 @@ $('#delete_pics').click(function(){
 
     })
 
-})
+}) */
 
 
+$(document).on('click', '#delete_docs', function(){  
+  var photos = $(this).attr('data-id');
+  var user_id = $(this).attr('data-session');
+  if(confirm("Вы действительно хотите удалить?"))  
+  {  
+       $.ajax({  
+            url:"php/post.php",  
+            method:"POST",  
+            data:{docs_id:photos, user_id: user_id},  
+            dataType:"text",  
+            success:function(data){  
+              $('#docs_del').remove();
+              $('#delete_docs').remove();
+             location.reload();
+            }  
+       });  
+  }  
+});
+
+/*
 $('#delete_docs').click(function(){
     
   var photos = $(this).attr('data-id');
@@ -27,7 +70,7 @@ $('#delete_docs').click(function(){
 
   }) 
 
-})
+}) */
 
 $('#delete_price').click(function(){
     

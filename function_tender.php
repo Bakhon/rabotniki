@@ -55,6 +55,8 @@ function dic_category(){
 }
 
 
+
+
 function count_tender(){
     require 'conn.php';
     $query = "SELECT TITLE, DESCRIPTION, PRICE, POST_DATE, ID_TENDER FROM `tender`  where STATUS = 1 GROUP BY TITLE, DESCRIPTION, PRICE, POST_DATE, ID_TENDER";
@@ -174,7 +176,7 @@ function get_profiles_tender($id){
         $q = "SELECT * FROM `services` WHERE ID = $cat";
         $res = mysqli_query($link, $q) or die("Ошибка " . mysqli_error($link)); 
         $arr = mysqli_fetch_all($res, MYSQLI_ASSOC); 
-        $date_start =date('d.m.Y', strtotime($rows['DATE_BEGIN']));
+        $date_start =date('d.m.Y', strtotime($rows[$i]['DATE_BEGIN']));
         $post_date = strtotime($rows[$i]['POST_DATE']);
         $now_date = date('Y-m-d');
         $nw = strtotime($now_date);
@@ -251,12 +253,10 @@ echo '
                                     </div>
                                 </div>';
 
-                            echo   '<div id="w0" class="mt-3"
-                                <a  href="'.$rows[$i]['PATH_FILE'].'">
-                                <img src="https://img.icons8.com/ios/50/000000/file--v1.png"/>
-                                 Файл</a>                                 
-                                </div>';
+                        
                                 
+
+                                echo '<a class="file-download d-inline-block align-middle m-2 p-1 shadow-sm text-center" href="'.$rows[$i]['PATH_FILE'].'" style="width: 77px; height: 58px;" target="_blank"><img src="img/pdf.svg" /><span class="small text-muted d-block mt-1">(17 КБ)</span></a>';
 
                              echo    
                             '</div>
@@ -275,8 +275,7 @@ echo '
                                 <svg class="text-primary mr-2 i is-phone-alt"><use xlink:href="#s-phone-alt" /></use></svg>
                             </div>';
                             if($_SESSION) {
-                              if($rows[$i]['SHOW_PHONE'] == '1') 
-                            {
+                           
                           echo '<div class="show_number" style="display: inline-block;">'.$hidden_num.'xxx xxxx<br>
                                 <a id="show_n"  class="view-phone small" href="#" data-type="2" >
                                     Показать номер
@@ -291,7 +290,7 @@ echo '
                                 </div>
                                 ';
                                 
-                           } }else{
+                            }else{
                                 echo '<div class="show_number_ses" style="display: inline-block;">'.$hidden_num.'xxx xxxx<br>
                                 <a id="show_n_s"  class="view-phone small" href="#" data-type="2" >
                                     Показать номер

@@ -67,7 +67,8 @@ error_reporting(0);
                         <div class="input-group">
                             <input id="need" name="need" type="text" class="form-control" placeholder="Что нужно сделать?">
                             <div class="input-group-append">
-                                <button class="btn btn-secondary" type="submit">Найти мастера</button>
+                                <a class="btn btn-secondary" href="tenderAdd.php">Найти мастера</a>
+                                
                             </div>
                         </div>
                     </form>                
@@ -103,13 +104,13 @@ error_reporting(0);
 <!--  MENU -->
     <nav id="menu" class="navbar-main navbar-expand-lg navbar">
         <div class="container">
-            <a class="navbar-brand" href="first.html">SiteName.KZ</a>
+            <a class="navbar-brand" href="index.php">SiteName.KZ</a>
             <button type="button" class="navbar-toggler" data-toggle="offcanvas" aria-label="Toggle navigation">
                 <svg class="i ir-bars"><use xlink:href="#r-bars"></use></svg>
             </button>
             
             <div class="navbar-content">
-                <a class="btn btn-lg text-white px-3" href="login.html">
+                <a class="btn btn-lg text-white px-3" href="login.php">
                     <svg class="i is-sign-in-alt"><use xlink:href="#s-sign-in-alt"></use></svg>
                 </a>
             </div>
@@ -118,7 +119,7 @@ error_reporting(0);
                 <div class="d-lg-none">
                     <div class="header-menu px-3 pt-3 pb-2 mb-2">
                         <div class="mt-1 mb-2">
-                            <a class="h3 font-weight-bold" href="first.html">SiteName.KZ</a>
+                            <a class="h3 font-weight-bold" href="index.php">SiteName.KZ</a>
                         </div>
                         <a href="register.php">Регистрация</a> | 
                         <a href="login.php">Войти</a>
@@ -126,7 +127,7 @@ error_reporting(0);
                     
                     <ul class="nav">
                         <li class="nav-item">
-                        <a class="text-secondary nav-link" href="tenderAdd.html">
+                        <a class="text-secondary nav-link" href="tenderAdd.php">
                             <svg class="mr-3 mr-lg-2 i il-plus"><use xlink:href="#l-plus"></use></svg>Создать тендер</a>
                         </li>
                     </ul>
@@ -140,7 +141,7 @@ error_reporting(0);
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="tender.html">
+                        <a class="nav-link" href="tender.php">
                             <svg class="mr-3 mr-lg-2 i is-gavel"><use xlink:href="#s-gavel"></use></svg>
                             Тендеры
                         </a>

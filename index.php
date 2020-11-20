@@ -1,4 +1,7 @@
-<?php require_once 'Theme/blocks/header.php' ?>
+<?php require_once 'Theme/blocks/header.php'; 
+require 'function_index.php';
+require 'function_tender.php';
+?>
 <?php
 
 
@@ -14,9 +17,9 @@
                     <div class="bg-black-50 px-4 px-sm-5 py-4 rounded-xl text-white text-center shadow lh-100">
                         <h1 class="font-size-3 text-shadow font-weight-bold lh-125 py-2">Сервис поиска мастеров</h1>
                         <div class="text-shadow h3 py-3">
-                            <a class="text-nowrap text-white" href="catalog.html"><b>2</b> строителей</a>          
+                            <a class="text-nowrap text-white" href="catalog.php"><b><?php echo count_active_emp(); ?></b> строителей</a>          
                             <span class="d-none d-md-inline px-3">|</span>
-                            <a class="text-nowrap text-white" href="tender.html"><b>2</b> заказов</a>                   
+                            <a class="text-nowrap text-white" href="tender.php"><b><?php echo count_tender(); ?></b> заказов</a>                   
                          </div>
                     </div>
                 </div>
@@ -30,66 +33,9 @@
 <section id="categories" class="pt-3">
     <div class="container py-5 text-center">
         <div class="row mb-5">
-
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
-                <div>
-                    <div class="mb-2">
-                        <img src="Theme/images/categoryes/2.png" alt="Ремонт квартиры или комнаты">                    
-                    </div>
-                    <a class="stretched-link text-body" href="catalog.html">Ремонт квартиры или комнаты<a>               
-                 </div>
-            </div>
-
-            <!-- DELETE this -->
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
-                <div>
-                    <div class="mb-2">
-                        <img src="Theme/images/categoryes/7.png" alt="Строительство дома">                    
-                    </div>
-                    <a class="stretched-link text-body" href="catalog.html">Строительство дома<a>               
-                 </div>
-            </div>
-
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
-                <div>
-                    <div class="mb-2">
-                        <img src="Theme/images/categoryes/27.png" alt="Плиточные работы">                    
-                    </div>
-                    <a class="stretched-link text-body" href="catalog.html">Плиточные работы<a>               
-                 </div>
-            </div>
-
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
-                <div>
-                    <div class="mb-2">
-                        <img src="Theme/images/categoryes/15.png" alt="Малярные работы">                    
-                    </div>
-                    <a class="stretched-link text-body" href="catalog.html">Малярные работы<a>               
-                 </div>
-            </div>
-
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
-                <div>
-                    <div class="mb-2">
-                        <img src="Theme/images/categoryes/20.png" alt="Штукатурные работы">                    
-                    </div>
-                    <a class="stretched-link text-body" href="catalog.html">Штукатурные работы<a>               
-                 </div>
-            </div>
-
-            <div class="col-6 col-sm-4 col-md-3 col-lg-2 mb-4">
-                <div>
-                    <div class="mb-2">
-                        <img src="Theme/images/categoryes/40.png" alt="Монтаж гипсокартона">                    
-                    </div>
-                    <a class="stretched-link text-body" href="catalog.html">Монтаж гипсокартона<a>               
-                 </div>
-            </div>
-            <!-- DELETE this end -->
-
-
+        <?php echo services_index(); ?>
         </div>
-        <a class="btn btn-outline-primary" href="catalog.html" rel="nofollow"><svg class="mr-2 i ir-sync-alt"><use xlink:href="#r-sync-alt" /></use></svg>Показать еще категории</a> 
+        <a class="btn btn-outline-primary" href="catalog.php" rel="nofollow"><svg class="mr-2 i ir-sync-alt"><use xlink:href="#r-sync-alt" /></use></svg>Показать еще категории</a> 
     </div>
 </section>
 <!-- Categoryes of services end-->
@@ -110,82 +56,15 @@
         <div class="row mb-3 justify-content-center">
             <div class="col-xl-9">
 
-                <div class="card card-tender mx-n2 mx-sm-0 mb-4 shadow-sm border-white card-hover">
-                    <div class="card-body">
-                        <div class="row">
+                <?php echo tender_index(); ?>
 
-                            <div class="col-auto pr-1 d-none d-md-block text-center pt-1">
-                                <div class="mb-3">
-                                    <div class="badge badge-primary">№000001</div>                
-                                </div>
-                                <svg class="text-primary i is-business-time" style="font-size: 70px; padding: 0 10px;"><use xlink:href="#s-business-time" /></use></svg>                            
-                            </div>
-
-                            <div class="col-md position-static">
-                                <div class="row mb-3">
-                                    <div class="col position-static pt-1">
-                                        <a class="stretched-link h5 " href="#">Снять опалубку с перекрытия (Нур-Султан)</a>
-                                    </div>
-                                </div>
-                                <div class="middle">
-                                    Снять опалубку 150м2 Процив. Нужно снять опалубку перекрытия 150 м2. Работу нужно выполнить 29-30 августа.                    
-                                    <div>
-                                        <span class="float-right unlink" data-toggle="tooltip" title="Опубликовано"><svg class="mr-1 i ir-clock"><use xlink:href="#r-clock" /></use></svg>
-                                            10 минут назад
-                                        </span>
-                                        <div class="mt-3"><svg class="mr-1 i id-signal-4"><use xlink:href="#d-signal-4" /></use></svg>
-                                            Бюджет до 50 000 тнг
-                                        </div>
-                                    </div>
-                                </div>                                
-                            </div>
-
-                        </div>
-                    </div>
-                </div> 
-
-                <!-- DELETE this -->
-                <div class="card card-tender mx-n2 mx-sm-0 mb-4 shadow-sm border-white card-hover">
-                    <div class="card-body">
-                        <div class="row">
-
-                            <div class="col-auto pr-1 d-none d-md-block text-center pt-1">
-                                <div class="mb-3">
-                                    <div class="badge badge-primary">№000002</div>                
-                                </div>
-                                <svg class="text-primary i is-business-time" style="font-size: 70px; padding: 0 10px;"><use xlink:href="#s-business-time" /></use></svg>                            
-                            </div>
-
-                            <div class="col-md position-static">
-                                <div class="row mb-3">
-                                    <div class="col position-static pt-1">
-                                        <a class="stretched-link h5 " href="#">Замена радиаторов (Нур-Султан)</a>
-                                    </div>
-                                </div>
-                                <div class="middle">
-                                    Требуется заменить в частном доме два чугунных радиатора на биметаллически (4 и 5 секций). Новые радиаторы есть в наличии.                    
-                                    <div>
-                                        <span class="float-right unlink" data-toggle="tooltip" title="Опубликовано"><svg class="mr-1 i ir-clock"><use xlink:href="#r-clock" /></use></svg>
-                                            15 минут назад
-                                        </span>
-                                        <div class="mt-3"><svg class="mr-1 i id-signal-4"><use xlink:href="#d-signal-4" /></use></svg>
-                                            Бюджет до 35 000 тнг
-                                        </div>
-                                    </div>
-                                </div>                                
-                            </div>
-
-                        </div>
-                    </div>
-                </div> 
-                <!-- DELETE this end -->
-                
-                
+              
+                        
             </div>
         </div>
 
         <div class="text-center">
-            <a class="btn btn-primary" href="tender.html" rel="nofollow"><svg class="mr-2 i ir-sync-alt"><use xlink:href="#r-sync-alt" /></use></svg>Показать еще тендеры</a>       
+            <a class="btn btn-primary" href="tender.php" rel="nofollow"><svg class="mr-2 i ir-sync-alt"><use xlink:href="#r-sync-alt" /></use></svg>Показать еще тендеры</a>       
          </div>
 
     </div>
@@ -197,142 +76,20 @@
 <section id="builders">
     <div class="container py-5">
         <h2 class="h1 mb-3 text-center h-underline h-underline-primary">Строители</h2>
-        <div class="text-muted mb-4 text-center middle">
-            <span class="text-nowrap"><b>2</b> всего строителей,</span>
-            <span class="text-nowrap"><b>2</b> мастеров,</span>
-            <span class="text-nowrap"><b>0</b> бригад,</span>
-            <span class="text-nowrap"><b>0</b> компаний</span>
+        <div class="text-muted mb-4 text-center middle">            
+            <span class="text-nowrap"><b><?php echo count_active_emp(); ?></b> мастеров</span>
         </div>
 
 
         <div class="row mb-3 justify-content-center">
             <div class="col-xl-9">
-
-                <div class="card card-hover mb-4 shadow-sm">
-                    <div class="card-body pb-1">
-                        <div class="row">
-                             <div class="text-center col-md-auto mb-1 mb-md-0">
-                                <img class="rounded" src="Theme/images/employees/143190.jpg" width="110" height="110" alt="Мастер Иван Иванов">             
-                                     <div class="text-warning mt-2 mb-n1">
-                                       <svg class="i is-star"><use xlink:href="#s-star" /></use></svg>
-                                       <svg class="i is-star"><use xlink:href="#s-star" /></use></svg>
-                                       <svg class="i is-star"><use xlink:href="#s-star" /></use></svg>
-                                       <svg class="i ir-star"><use xlink:href="#r-star" /></use></svg>
-                                       <svg class="i ir-star"><use xlink:href="#r-star" /></use></svg>
-                                     </div>                
-                                    
-                                     <div class="my-1 small">
-                                       <a class="text-body unlink" href="#" data-modal="/modal/rank-info">Рейтинг: 75 из 80</a>                
-                                     </div>
-
-                                     <div class="mb-2">
-                                        <a class="small text-muted unlink" href="#" rel="nofollow">0 отзывов</a>                
-                                    </div>
-                             </div>
-
-
-                             <div class="col text-center text-md-left position-static">
-                                <div>
-                                     <span  class="icon-pro">PRO</span>
-                                     <span class="h4 align-middle d-block d-md-inline mt-2 ml-1">
-                                        <a class="stretched-link" href="employeeProfile.html">Мастер Иван Иванов"</a>  
-                                     </span>
-                                </div>
-
-                                <div class="my-3">
-                                    <div class="pr-3 mb-3 mb-md-0 d-md-inline">
-                                        <svg class="i is-map-marker-alt"><use xlink:href="#s-map-marker-alt" /></use></svg> 
-                                        Нур-Султан                    
-                                    </div>
-                                    <button class="btn btn-link text-success font-weight-bold p-0 unlink" >
-                                        <svg class="mr-1 i is-shield-check"><use xlink:href="#s-shield-check" /></use></svg>
-                                        Личность подтверждена
-                                    </button> 
-                                </div>
-
-                                <div class="text-muted small my-3">
-                                    <span class="text-nowrap d-block d-md-inline">Зарегистрирован 1 месяц назад</span>
-                                    <span class="px-2 d-none d-md-inline">•</span>
-                                    <span class="text-nowrap text-success">Сейчас на сайте</span>               
-                                </div>
-
-                                <div class="text-left mb-3">
-                                    Работу выполняю качественно!                                    
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
-
-                <!-- DELETE this -->
-                <div class="card card-hover mb-4 shadow-sm">
-                    <div class="card-body pb-1">
-                        <div class="row">
-                             <div class="text-center col-md-auto mb-1 mb-md-0">
-                                <img class="rounded" src="Theme/images/employees/453155.jpg" width="110" height="110" alt="Мастер Петр Петров">             
-                                     <div class="text-warning mt-2 mb-n1">
-                                       <svg class="i is-star"><use xlink:href="#s-star" /></use></svg>
-                                       <svg class="i is-star"><use xlink:href="#s-star" /></use></svg>
-                                       <svg class="i is-star"><use xlink:href="#s-star" /></use></svg>
-                                       <svg class="i ir-star"><use xlink:href="#s-star" /></use></svg>
-                                       <svg class="i ir-star"><use xlink:href="#r-star" /></use></svg>
-                                     </div>                
-                                    
-                                     <div class="my-1 small">
-                                       <a class="text-body unlink" href="#" data-modal="/modal/rank-info">Рейтинг: 70 из 80</a>                
-                                     </div>
-
-                                     <div class="mb-2">
-                                        <a class="small text-muted unlink" href="#" rel="nofollow">0 отзывов</a>                
-                                    </div>
-                             </div>
-
-
-                             <div class="col text-center text-md-left position-static">
-                                <div>
-                                     <span  class="icon-pro">PRO</span>
-                                     <span class="h4 align-middle d-block d-md-inline mt-2 ml-1">
-                                        <a class="stretched-link" href="employeeProfile.html">Мастер Петр Петров"</a>  
-                                     </span>
-                                </div>
-
-                                <div class="my-3">
-                                    <div class="pr-3 mb-3 mb-md-0 d-md-inline">
-                                        <svg class="i is-map-marker-alt"><use xlink:href="#s-map-marker-alt" /></use></svg> 
-                                        Нур-Султан                    
-                                    </div>
-                                    <button class="btn btn-link text-success font-weight-bold p-0 unlink" >
-                                        <svg class="mr-1 i is-shield-check"><use xlink:href="#s-shield-check" /></use></svg>
-                                        Личность подтверждена
-                                    </button> 
-                                </div>
-
-                                <div class="text-muted small my-3">
-                                    <span class="text-nowrap d-block d-md-inline">Зарегистрирован 1 месяц назад</span>
-                                    <span class="px-2 d-none d-md-inline">•</span>
-                                    <span class="text-nowrap text-success">Был на сайте 5 часов назад</span>               
-                                </div>
-
-                                <div class="text-left mb-3">
-                                    Комплексный ремонт квартир, офисов, домов. У нас нет универсальных работников, каждый занимается своим делом!                                    
-                                </div>
-                            </div>
-
-
-                        </div>
-                    </div>
-                </div>
+               <?php echo index_rabotniki(); ?>             
                 <!-- DELETE this end-->
-
-
-
             </div>
         </div>
 
         <div class="text-center">
-            <a class="btn btn-primary" href="catalog.html" rel="nofollow"><svg class="mr-2 i ir-sync-alt"><use xlink:href="#r-sync-alt" /></use></svg>Показать еще строителей</a>     
+            <a class="btn btn-primary" href="catalog.php" rel="nofollow"><svg class="mr-2 i ir-sync-alt"><use xlink:href="#r-sync-alt" /></use></svg>Показать еще строителей</a>     
         </div>
 
     </div>

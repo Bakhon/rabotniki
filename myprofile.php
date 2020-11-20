@@ -3,7 +3,7 @@
 require_once 'function.php';
 require_once 'conn.php';
 require_once 'function.php';
- // print_r($_SESSION);
+  print_r($_SESSION);
  // echo $_SESSION['id'];
  if(isset($_GET['action'])){
      if($_GET['action'] == 'view')

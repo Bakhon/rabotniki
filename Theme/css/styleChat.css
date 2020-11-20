@@ -72980,7 +72980,7 @@ svg{touch-action:none}.jvectormap-container{width:100%;height:100%;position:rela
         }
 
         .ps {
-            overflow: hidden !important;
+            overflow: auto;
             overflow-anchor: none;
             -ms-overflow-style: none;
             touch-action: auto;

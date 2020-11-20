@@ -1,13 +1,5 @@
 
-  function autoRefresh_div()
-  {
-       $(".live_chat").load("php/select_chat.php").show();// a function which will load data from other file after x seconds
-   }
-$(document).ready(function(){
-  
-    
-     setInterval('autoRefresh_div()', 2000);
-})
+
 
 $('#save_rev').click(function(){
    $review = $('#review').val();
@@ -41,6 +33,33 @@ $('#send_mess').click(function(){
 
 })
 
+
+function get_data($to_chat)  
+{  
+     $.ajax({  
+          url:"php/select_chat.php",  
+          method:"POST",
+          data:  {id: $to_chat}, 
+          success:function(data){  
+               $('.live_data').html(data);  
+          }  
+     });  
+}  
+
+
+function get_right_ava($to_chat)  
+{  
+     $.ajax({  
+          url:"php/right_ava.php",  
+          method:"POST",
+          data:  {id: $to_chat}, 
+          success:function(data){  
+               $('#right_ava').html(data);  
+          }  
+     });  
+}  
+
+
 $('#chat').click(function(){
     $text = $('#text_chat').val();
     $from_chat = $('#from_chat').val();
@@ -51,22 +70,27 @@ $('#chat').click(function(){
     $.post('php/employee.php', {"text": $text, "from_chat": $from_chat, "to_chat": $to_chat, "chat_date": $chat_date}, function(d){    
         if(d == $text)
         {    
-          $('#text_chat').text('');
-          $('.live_chat').append('');
-          console.log(d);
+           // alert(d);
+          $('#text_chat').val('');
+           get_data($to_chat);
+         
+         /* $('.upd_chat').append('<div class="peer mR-20"><img class="w-2r bdrs-50p" src="" alt=""></div><div class="peer peer-greed"><div class="layers ai-fs gapY-5"><div class="layer"><div class="peers fxw-nw ai-c pY-3 pX-10 bgc-white bdrs-2 lh-3/2"><div class="peer mR-10"><small>'+$chat_date          
+          +'</small></div><div class="peer-greed msg"><span>'+$text          
+          +'</span></div></div></div></div></div>');     */    
         }
 })
 })
 
 
 
+
 $(document).ready(function(){  
   
-
+    setInterval('getdata()', 2000);
     $(document).on('click', '.msg_beetween_chat', function(){  
         var id=$(this).attr("id3"); 
         $('#to_chat').val(id);
-    
+         
         console.log(id);
          
              $.ajax({  
@@ -75,8 +99,9 @@ $(document).ready(function(){
                   data:{id:id},  
                   dataType:"text",  
                   success:function(data){  
-                     //  alert(data);  
+                      // alert(data);  
                        $('.live_data').html(data); 
+                       get_right_ava(id);
                   }  
              });  
          

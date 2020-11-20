@@ -112,13 +112,13 @@
                         <div class="mt-1 mb-2">
                             <a class="h3 font-weight-bold" href="index.php">SiteName.KZ</a>
                         </div>
-                        <a href="register.html">Регистрация</a> | 
-                        <a href="login.html">Войти</a>
+                        <a href="register.php">Регистрация</a> | 
+                        <a href="login.php">Войти</a>
                     </div>
                     
                     <ul class="nav">
                         <li class="nav-item">
-                        <a class="text-secondary nav-link" href="tenderAdd.html">
+                        <a class="text-secondary nav-link" href="tenderAdd.php">
                             <svg class="mr-3 mr-lg-2 i il-plus"><use xlink:href="#l-plus"></use></svg>Создать тендер</a>
                         </li>
                     </ul>
@@ -132,7 +132,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="tender.html">
+                        <a class="nav-link" href="tender.php">
                             <svg class="mr-3 mr-lg-2 i is-gavel"><use xlink:href="#s-gavel"></use></svg>
                             Тендеры
                         </a>

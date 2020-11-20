@@ -135,10 +135,10 @@ $rows2 = mysqli_fetch_all($result2, MYSQLI_ASSOC);
                     <div class="modal-content">  
                             <div class="modal-header">  
                                 <button type="button" class="close" data-dismiss="modal">&times;</button>  
-                                <h4 class="modal-title">PHP Ajax Update MySQL Data Through Bootstrap Modal</h4>  
+                                <h4 class="modal-title">Добавить сервис</h4>  
                             </div>  
                             <div class="modal-body">  
-                                <form method="post" id="insert_form">  
+                                <form method="post" enctype="multipart/form-data" id="insert_form">  
                                                                 
                                     <label>Выберите специализацию</label>  
                                     <select name="select_spec" id="select_spec" class="form-control">  
@@ -153,6 +153,9 @@ $rows2 = mysqli_fetch_all($result2, MYSQLI_ASSOC);
                                     <?php } ?>
                                     </select>  
                                     <br />  
+                                    <label>Фото сервиса</label>  
+                                    <input id="myFile" class="form-control" type="file" name="file_service" />
+                                    <br />
                                     <label>Наименование сервиса</label>  
                                     <input type="text" name="speciality[]" id="speciality" class="form-control" />  
                                     <br />                                                                       

@@ -85,7 +85,7 @@
             <div class="form-group row field-tender-title required">
                 <label class="col-sm-3" for="tender-title">Заголовок тендера</label>
                 <div class="col-sm-9">
-                    <input type="text" id="tender-title" class="form-control" name="Tender[title]" maxlength="70" aria-required="true">
+                    <input value="<?php echo $_POST['Tender[title]']; ?>" type="text" id="tender-title" class="form-control" name="Tender[title]" maxlength="70" aria-required="true">
                     <div class="invalid-feedback "></div>
                     <small class="form-text text-muted ">Например: Укладка 100 кв.м. тротуарной плитки на бетонное основание</small>
                 </div>
@@ -181,7 +181,7 @@
                 <label class="col-sm-3"> Бюджет    </label>
                 <div class="col-sm-9">
                     <div class="input-group mb-3">
-                        <input type="text" id="tender-budget" class="form-control w-100px" name="Tender[budget]">           
+                        <input value="<?php echo $_POST['Tender[budget]'] ?>" type="text" id="tender-budget" class="form-control w-100px" name="Tender[budget]">           
                          <div class="input-group-append">
                             <span class="input-group-text">тнг</span>
                         </div>
@@ -202,7 +202,7 @@
                             <span class="input-group-text"><svg class="i is-calendar-alt"><use xlink:href="#s-calendar-alt" /></use></svg></span>
                         </div>
                         <!-- <input type="text" id="tender-start" class="form-control w-150px krajee-datepicker" name="Tender[start]" value="29.08.2020" data-datepicker-source="tender-start" data-datepicker-type="1" > -->
-                        <input type="text" id="datetimepicker1" class="form-control w-150px krajee-datepicker"> 
+                        <input <?php echo $_POST['date_start']; ?> name="date_start" type="text" id="datetimepicker1" class="form-control w-150px krajee-datepicker"> 
                     </div>
                     <div class="invalid-feedback"></div>
                     <div class="invalid-feedback "></div>
@@ -221,7 +221,7 @@
                         <div class="input-group-prepend">
                             <span class="input-group-text"><svg class="i is-calendar-alt"><use xlink:href="#s-calendar-alt" /></use></svg></span>
                         </div>
-                        <input type="text" id="datetimepicker2" class="form-control w-150px krajee-datepicker"> 
+                        <input name="<?php echo $_POST['date_finish']; ?>" name="date_finish" type="text" id="datetimepicker2" class="form-control w-150px krajee-datepicker"> 
                     </div>
                     <div class="invalid-feedback"></div>
                     <div class="invalid-feedback "></div>
@@ -252,7 +252,7 @@
             <div class="form-group row field-signup-username required">
                 <label class="col-sm-3" for="signup-username">Ваше имя</label>
                 <div class="col-sm-9">
-                    <input type="text" id="signup-username" class="form-control w-250px" name="Signup[username]" aria-required="true">
+                    <input name="<?php $_POST['Signup[username]']; ?>"  type="text" id="signup-username" class="form-control w-250px" name="Signup[username]" aria-required="true">
                     <div class="invalid-feedback "></div>
                 </div>
             </div>
