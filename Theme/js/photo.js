@@ -72,6 +72,26 @@ $('#delete_docs').click(function(){
 
 }) */
 
+$(document).on('click', '#delete_price', function(){  
+  var del = $(this).attr('data-id');
+  var user_id = $(this).attr('data-session');
+  console.log(del);
+  if(confirm("Вы действительно хотите удалить?"))  
+  {  
+       $.ajax({  
+            url:"php/post.php",  
+            method:"POST",  
+            data:{price_id:del, user_id: user_id},  
+            dataType:"text",  
+            success:function(data){  
+              $('#docs_del').remove();
+              $('#delete_docs').remove();
+             location.reload();
+            }  
+       });  
+  }  
+});
+/*
 $('#delete_price').click(function(){
     
   var del = $(this).attr('data-id');
@@ -85,4 +105,4 @@ $('#delete_price').click(function(){
 
   }) 
 
-})
+})*/

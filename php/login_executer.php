@@ -8,8 +8,12 @@ if(isset($_POST['phone']))
      $password = trim($_POST['password']);
      $number = trim(substr($phone, 8, 13));
      $pass = md5($password);
+
+
      
-     $query = "Select * from users where phone  like '%$number%' and password = '$pass'";    
+     $query ="Select * from users where phone = '$phone' and password = '$pass' and status = 1";
+     
+     //$query = "Select * from users where phone  like '%$number%' and password = '$pass' and status = 1";    
      $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link));
      $rows = mysqli_num_rows($result);
      $arr = mysqli_fetch_all($result, MYSQLI_ASSOC);

@@ -139,10 +139,21 @@ function nav_tender($page){
     $num_rows = mysqli_num_rows($result);    
     $count_news = 2;                    
     $cnt = ceil($num_rows/$count_news); 
-    echo  '<nav>
-    <ul class="pagination justify-content-center">
-        <li class="page-item prev disabled"><a class="page-link" href="#" data-page="0" tabindex="-1"><span aria-hidden="true">&laquo;</span>
+    if(isset($_GET['page']))
+    {
+    $next = $page + 1;
+    $prev = $page - 1;
+    }
+    echo  
+    
+   
+    '<nav>
+    <ul class="pagination justify-content-center">';
+    if($page != 1) {
+ 
+        echo '<li class="page-item prev "><a class="page-link" href="tender.php?page='.$prev.'" data-page="0" tabindex="-1"><span aria-hidden="true">&laquo;</span>
         <span class="sr-only">Previous</span></a></li>';
+    }
     for($i=1;$i<=$cnt;$i++) 
     {
        
@@ -151,10 +162,11 @@ function nav_tender($page){
         }else {$txt = '';}
    echo '<li class="page-item '.$txt.'"><a class="page-link" href="tender.php?page='.$i.'" data-page="0">'.$i.'</a></li>';
 }
-echo '<li class="page-item next"><a class="page-link" href="#" data-page="1"><span aria-hidden="true">&raquo;</span>
+if($page != $cnt) {
+echo '<li class="page-item next"><a class="page-link" href="tender.php?page='.$next.'" data-page="1"><span aria-hidden="true">&raquo;</span>
 <span class="sr-only">Next</span></a></li>  </ul>
 </nav>';
-
+}
 }
 
 
@@ -255,9 +267,9 @@ echo '
 
                         
                                 
-
+             if($rows[$i]['PATH_FILE'] != '') {
                                 echo '<a class="file-download d-inline-block align-middle m-2 p-1 shadow-sm text-center" href="'.$rows[$i]['PATH_FILE'].'" style="width: 77px; height: 58px;" target="_blank"><img src="img/pdf.svg" /><span class="small text-muted d-block mt-1">(17 КБ)</span></a>';
-
+             }
                              echo    
                             '</div>
                         </div>

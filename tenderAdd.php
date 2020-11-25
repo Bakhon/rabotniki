@@ -1,7 +1,7 @@
 
 <?php require_once 'Theme/blocks/header_tender.php'; 
       require_once 'function_tender.php';
-      print_r($_SESSION);
+     
 ?>
 
 

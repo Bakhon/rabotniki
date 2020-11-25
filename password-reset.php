@@ -55,7 +55,7 @@
 
                 <!-- logo -->
                 <div class="col-auto py-2 pr-0">
-                    <a href="first.html"><img src="Theme/images/rabotniki.png" height="60" alt="SiteName.KZ"></a>            
+                    <a href="index.php"><img src="Theme/images/rabotniki.png" height="60" alt="SiteName.KZ"></a>            
                 </div>
               
                     <div class="col-1 text-center p-0"> </div>
@@ -97,13 +97,13 @@
 <!--  MENU -->
 <nav id="menu" class="navbar-main navbar-expand-lg navbar">
     <div class="container">
-        <a class="navbar-brand" href="first.html">SiteName.KZ</a>
+        <a class="navbar-brand" href="index.php">SiteName.KZ</a>
         <button type="button" class="navbar-toggler" data-toggle="offcanvas" aria-label="Toggle navigation">
             <svg class="i ir-bars"><use xlink:href="#r-bars"></use></svg>
         </button>
         
         <div class="navbar-content">
-            <a class="btn btn-lg text-white px-3" href="login.html">
+            <a class="btn btn-lg text-white px-3" href="login.php">
                 <svg class="i is-sign-in-alt"><use xlink:href="#s-sign-in-alt"></use></svg>
             </a>
         </div>
@@ -112,15 +112,15 @@
             <div class="d-lg-none">
                 <div class="header-menu px-3 pt-3 pb-2 mb-2">
                     <div class="mt-1 mb-2">
-                        <a class="h3 font-weight-bold" href="first.html">SiteName.KZ</a>
+                        <a class="h3 font-weight-bold" href="index.php">SiteName.KZ</a>
                     </div>
-                    <a href="register.html">Регистрация</a> | 
-                    <a href="login.html">Войти</a>
+                    <a href="register.php">Регистрация</a> | 
+                    <a href="login.php">Войти</a>
                 </div>
                 
                 <ul class="nav">
                     <li class="nav-item">
-                    <a class="text-secondary nav-link" href="tenderAdd.html">
+                    <a class="text-secondary nav-link" href="tenderAdd.php">
                         <svg class="mr-3 mr-lg-2 i il-plus"><use xlink:href="#l-plus"></use></svg>Создать тендер</a>
                     </li>
                 </ul>
@@ -128,13 +128,13 @@
             
             <ul class="nav">
                 <li class="nav-item">
-                    <a class="nav-link" href="catalog.html">
+                    <a class="nav-link" href="catalog.php">
                         <svg class="mr-3 mr-lg-2 i is-user-hard-hat"><use xlink:href="#s-user-hard-hat"></use></svg>
                         Работники
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="tender.html">
+                    <a class="nav-link" href="tender.php">
                         <svg class="mr-3 mr-lg-2 i is-gavel"><use xlink:href="#s-gavel"></use></svg>
                         Тендеры
                     </a>

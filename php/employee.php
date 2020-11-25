@@ -267,5 +267,71 @@ exit;
     
 }
 
+if(isset($_POST['service_check'])){
+    require_once '../conn.php';
+
+    $data_id = $_POST['service_check'];
+    $query_sql = "SELECT * FROM `users_speciality` WHERE USER_ID = $data_id";
+    $result_sql = mysqli_query($link, $query_sql) or die("Ошибка " . mysqli_error($link)); 
+    $users_service = mysqli_fetch_all($result_sql, MYSQLI_ASSOC);  
+           
+    $html = '';
+    $html .= '<form id="signup" action="#" method="post">
+    <div class="form-group field-signup-username required">
+       <label for="signup-username">Специализация</label>
+       <div class="row form-group"></div>
+       <div class="col-sm-12">
+          <!-- Services -->
+          <div class="my-4">
+             <div>';
+                 
+                   $query ="SELECT * FROM `speciality`"; 
+                   $result = mysqli_query($link, $query) or die("Ошибка " . mysqli_error($link)); 
+                   
+                   $rows = mysqli_fetch_all($result, MYSQLI_ASSOC);
+                   //  print_r($rows);
+                                 
+                    foreach ($rows as $row) {                             
+                     $v = $row['ID'];
+                   
+                   
+                   $html .= '<hr/>
+                <div class="custom-control custom-checkbox">
+                  
+                   <input type="checkbox" id="i35" class="custom-control-input " name="TenderSearch[customer][]" value="1">
+                   <label class="custom-control-label" for="i35">
+                      <h4><b>'.$row['NAME_SPEC'].'</b></h4>
+                   </label>
+                </div>';
+                
+                   $query2 = "SELECT * FROM `services` WHERE SPECID = $v";
+                   // echo $query2;
+                   $result2 = mysqli_query($link, $query2) or die("Ошибка " . mysqli_error($link)); 
+                   $rows2 = mysqli_fetch_all($result2, MYSQLI_ASSOC);
+                   foreach($rows2 as $roww) {
+                   
+$html .= '
+                <div>
+                   <div class="custom-control custom-checkbox">';
+                
+                   foreach($users_service as $user) 
+                   if($roww['ID'] == $user['USER_SPECIALITY']) { $text = 'checked';} else{ $text = '';} 
+               $html .=  '<input '.$text.'  data="'.$roww['ID'].'" type="checkbox" id="'.$roww['ID'].'" class="custom-control-input check" name="TenderSearch[customer][]" value="'.$roww['ID'].'">
+                      <label class="custom-control-label" for="'.$roww['ID'].'">'.$roww['NAME_SERV'].'</label>
+                   </div>
+                </div>';
+               
+                     }  } 
+                $html .='   
+             </div>
+          </div>
+       </div>
+       <div class="invalid-feedback"></div>
+    </div>
+ </form>';
+echo $html;
+    exit;
+}
+
 
 ?>

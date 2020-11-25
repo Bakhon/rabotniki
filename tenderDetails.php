@@ -6,7 +6,7 @@
 <div class="container pt-3 mb-5">
     <ol class="mb-3 breadcrumb" itemscope itemtype="http://schema.org/BreadcrumbList">
         <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
-            <a href="tender.html" itemprop="item">
+            <a href="tender.php" itemprop="item">
                 <span itemprop="name">Все заказы</span>
             </a>
             <meta itemprop="position" content="2">
@@ -23,11 +23,16 @@
 <?php echo get_profiles_tender($_GET['id']); ?>
 
 
-
+<?php $y = count_tender_comments($_GET['id']); if($y<=0) { ?>
         <!-- Предложения по тендеру -->
-       
+        <div class="empty"><div id="w3" class="alert-info alert-i alert" role="alert">
+
+<svg class="alert-icon i id-info-circle" style="--i-primary-color: white;" ajax=""><svg class="i-color" style="--i-primary-color: white;" id="d-info-circle" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><defs></defs><path fill="currentColor" d="M256 8C119 8 8 119.08 8 256s111 248 248 248 248-111 248-248S393 8 256 8zm0 110a42 42 0 1 1-42 42 42 42 0 0 1 42-42zm56 254a12 12 0 0 1-12 12h-88a12 12 0 0 1-12-12v-24a12 12 0 0 1 12-12h12v-64h-12a12 12 0 0 1-12-12v-24a12 12 0 0 1 12-12h64a12 12 0 0 1 12 12v100h12a12 12 0 0 1 12 12z" class="i-secondary"></path><path fill="currentColor" d="M256 202a42 42 0 1 0-42-42 42 42 0 0 0 42 42zm44 134h-12V236a12 12 0 0 0-12-12h-64a12 12 0 0 0-12 12v24a12 12 0 0 0 12 12h12v64h-12a12 12 0 0 0-12 12v24a12 12 0 0 0 12 12h88a12 12 0 0 0 12-12v-24a12 12 0 0 0-12-12z" class="i-primary"></path></svg></svg>Пока еще никто не оставил предложения.
+
+
+</div></div>
     
-       <?php echo tender_comments($_GET['id']); ?>
+<?php } echo tender_comments($_GET['id']); ?>
 
 
         <div class="title bg-light text-dark h4 mb-4" id="addOffer"><a data-toggle="modal"  data-target="#add_comment" >Добавить предложение</a> </div>
